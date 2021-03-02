@@ -73,7 +73,7 @@ effective = dis(first);
 edist_W(muX+1) = effective;
 end
 
-% Askey colocated localization coefficient
+% Askey cross-localization weight
 k2 = 3;
 nu = 2; 
 muX = 0:10;
@@ -81,7 +81,7 @@ muY = 0;
 %muXY = 1/2.*(muY + muX/(k2));
 bXY_A = sqrt( (k2).^(-nu) .* ( beta(nu, 1/2.*(muY + muX./(k2))+1).^2 ./ (beta(nu, muX+1).*beta(nu, muY+1)) ) ) ; 
 
-% Wendland colocated localization coefficient
+% Wendland cross-localization weight
 k2 = 3;
 nu = 3; 
 muX = 0:10;
@@ -104,11 +104,11 @@ xlabel('$\gamma_{XX}$', 'Interpreter', 'latex')
 set(gca, 'FontSize', 18)
 hold off
 %saveas(gcf, '../Plots/coloc_coeff_effective_range_A_W.png')
-saveas(gcf, '../Plots/crossloc_weight_effective_range_A_W.png')
+%saveas(gcf, '../Plots/crossloc_weight_effective_range_A_W.png')
 
 
 %% increasing nu
-%% Plot effective taper range
+% Plot effective taper range
 % Find distance at which cross localization is 0.
 % Askey effective distance
 locFun = 'Askey'; 
@@ -163,7 +163,7 @@ effective = dis(first);
 edist_W(nu-2) = effective;
 end
 
-% Askey colocated localization coefficient
+% Askey cross-localization weight
 k2 = 3;
 nu = 2:10; 
 muX = 0;
@@ -171,7 +171,7 @@ muY = 0;
 %muXY = 1/2.*(muY + muX/(k2));
 bXY_A = sqrt( (k2).^(-nu) .* ( beta(nu, 1/2.*(muY + muX./(k2))+1).^2 ./ (beta(nu, muX+1).*beta(nu, muY+1)) ) ) ; 
 
-% Wendland colocated localization coefficient
+% Wendland cross localization weight
 k2 = 3;
 nu = 3:10; 
 muX = 5;
@@ -198,6 +198,6 @@ xlim([1, 9])
 hold off
 %saveas(gcf, '../Plots/coloc_coeff_effective_range_A_W_nu.png')
 %saveas(gcf, '../Plots/crossloc_weight_effective_range_A_W_nu.png')
-saveas(gcf, '../Plots/figB4.png')
+%saveas(gcf, '../Plots/figB4.png')
 
 

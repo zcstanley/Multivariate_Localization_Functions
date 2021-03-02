@@ -17,6 +17,7 @@ for ii = 1:length(mux_A)
     lp_A(ii) = prctile(these(:), 05);
 end
 
+figure
 plot(mux_A, rms_A, 'LineWidth', 3)
 hold on
 plot(mux_A, up_A, 'k--', 'LineWidth', 3)
@@ -27,7 +28,7 @@ ylabel('RMSE')
 title('Askey')
 set(gca, 'FontSize', 18)
 %saveas(gcf, '../Plots/A_mux.png')
-saveas(gcf, '../Plots/A_gamma_XX.png')
+%saveas(gcf, '../Plots/A_gamma_XX.png')
 
 % Process Wendland
 RMSE_X_W_MV = RMSE_X_W_MV(1:100, :);
@@ -45,6 +46,7 @@ for ii = 1:length(mux_W)
     lp_W(ii) = prctile(these(:), 05);
 end
 
+figure
 plot(mux_W, rms_W, 'LineWidth', 3)
 hold on
 plot(mux_W, up_W, 'k--', 'LineWidth', 3)
@@ -56,39 +58,4 @@ title('Wendland')
 xlim([1,10])
 set(gca, 'FontSize', 18)
 %saveas(gcf, '../Plots/W_mux.png')
-saveas(gcf, '../Plots/W_gamma_XX.png')
-
-%% Plot impact of nu on Askey
-
-load('./Data/cY15_cX45_Askey.mat')
-hold_RMSE_X_A = RMSE_X_A;
-hold_nu_A = nu_A;
-load('./Data/cY15_cX45_Askey_2.mat')
-hold_RMSE_X_A(28:end, :) = RMSE_X_A(1:3,:); 
-hold_nu_A(28:end) = nu_A(1:3);
-RMSE_X_A = hold_RMSE_X_A;
-nu_A = hold_nu_A;
-
-% Process Askey
-nus = unique(nu_A(:,1));
-rms_A = zeros(size(nus));
-up_A = zeros(size(nus));
-lp_A = zeros(size(nus));
-for ii = 1:length(nus)
-    this = (nu_A==nus(ii));
-    these = RMSE_X_A(this, 1001:end);
-    rms_A(ii) = mean(these(:));
-    up_A(ii) = prctile(these(:), 95);
-    lp_A(ii) = prctile(these(:), 05);
-end
-
-plot(nus, rms_A, 'LineWidth', 3)
-hold on
-plot(nus, up_A, 'k--', 'LineWidth', 3)
-plot(nus, lp_A, 'k--', 'LineWidth', 3)
-hold off
-ylabel('RMSE')
-xlabel('$\nu$', 'Interpreter', 'latex')
-title('Askey')
-set(gca, 'FontSize', 18)
-saveas(gcf, './Plots/A_nu.png')
+%saveas(gcf, '../Plots/W_gamma_XX.png')
