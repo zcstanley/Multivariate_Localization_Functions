@@ -1,7 +1,7 @@
-load('./Data/cY15_cX45_A_bXYto0.mat')
-load('./Data/cY15_cX45_BW_bXYto0.mat')
-load('./Data/cY15_cX45_GC_bXYto0.mat')
-load('./Data/cY15_cX45_W_bXYto0.mat')
+load('cY15_cX45_A_bXYto0.mat')
+load('cY15_cX45_BW_bXYto0.mat')
+load('cY15_cX45_GC_bXYto0.mat')
+load('cY15_cX45_W_bXYto0.mat')
 
 % Process Askey
 beta_A = unique(bXY_A);
@@ -41,6 +41,6 @@ legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland')
 ylabel('RMSE', 'Interpreter', 'latex')
 xlabel('Cross-localization weight factor, $\beta$', 'Interpreter', 'latex')
 set(gca, 'FontSize', 18)
-saveas(gcf, '../Plots/4functions_bXYto0.png')
+%saveas(gcf, '../Plots/4functions_bXYto0.png')
 
 
