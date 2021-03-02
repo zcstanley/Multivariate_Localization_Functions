@@ -1,7 +1,7 @@
-load('./Data/UV_MV_GC.mat')
-load('./Data/UV_MV_BW.mat')
-load('./Data/UV_MV_A.mat')
-load('./Data/UV_MV_W.mat')
+load('UV_MV_GC.mat')
+load('UV_MV_BW.mat')
+load('UV_MV_A.mat')
+load('UV_MV_W.mat')
 
 % Gaspari-Cohn
 gc_uv = RMSE_X_GC_UV(:, 1001:end);
@@ -18,7 +18,7 @@ ylabel('Probability'); xlabel('RMSE')
 set(gca, 'FontSize', 18, 'LineWidth', 2)
 ylim([0, 0.05])
 hold off
-saveas(gcf, '../Plots/HIST_UV_MV_GC.png')
+%saveas(gcf, '../Plots/HIST_UV_MV_GC.png')
 
 % Bolin-Wallin
 bw_uv = RMSE_X_BW_UV(:, 1001:end);
@@ -36,7 +36,7 @@ ylabel('Probability'); xlabel('RMSE')
 set(gca, 'FontSize', 18, 'LineWidth', 2)
 ylim([0, 0.05])
 hold off
-saveas(gcf, '../Plots/HIST_UV_MV_BW.png')
+%saveas(gcf, '../Plots/HIST_UV_MV_BW.png')
 
 % Askey
 a_uv = RMSE_X_A_UV(:, 1001:end);
@@ -54,7 +54,7 @@ ylabel('Probability'); xlabel('RMSE')
 set(gca, 'FontSize', 18, 'LineWidth', 2)
 ylim([0, 0.05])
 hold off
-saveas(gcf, '../Plots/HIST_UV_MV_A.png')
+%saveas(gcf, '../Plots/HIST_UV_MV_A.png')
 
 % Wendland
 figure
@@ -71,4 +71,4 @@ ylabel('Probability'); xlabel('RMSE')
 set(gca, 'FontSize', 18, 'LineWidth', 2)
 ylim([0, 0.05])
 hold off
-saveas(gcf, '../Plots/HIST_UV_MV_W.png')
+%saveas(gcf, '../Plots/HIST_UV_MV_W.png')

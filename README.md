@@ -10,7 +10,7 @@ Figure 3 - "HIST_UV_MV.m"
 
 Figure B1 - "L96_EnKF_True_Cov.m"
 
-Figure B2 - "figures_4functions_bXYto0.m"
+Figure B2 - "figures_4functions_bXYto0.m" and "beta_max_vs_loc_rad.m"
 
 Figure B3 - "plot_sensitivity_exp.m" & "plot_effective_taper_range.m"
 
