@@ -15,3 +15,6 @@ Figure B2 - "figures_4functions_bXYto0.m" and "beta_max_vs_loc_rad.m"
 Figure B3 - "plot_sensitivity_exp.m" & "plot_effective_taper_range.m"
 
 Figure B4 - "plot_effective_taper_range.m"
+
+[![DOI](https://zenodo.org/badge/340481426.svg)](https://zenodo.org/badge/latestdoi/340481426)
+
