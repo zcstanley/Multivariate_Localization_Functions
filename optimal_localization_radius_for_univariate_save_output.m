@@ -77,7 +77,7 @@ fprintf('\nWendland\n')
 loc_fun_name = 'wendland' ; 
 for ii = 1:length(loc_rad)
     R = loc_rad(ii);
-    loc_params = struct('rYY', R, 'rXX', R, 'rXY', R, 'nu', 1, 'gammaYY', 0, 'gammaXX', 0, 'gammaXY', 0, 'k', 1, 'beta', 1); 
+    loc_params = struct('rYY', R, 'rXX', R, 'rXY', R, 'nu', 2, 'gammaYY', 0, 'gammaXX', 0, 'gammaXY', 0, 'k', 1, 'beta', 1); 
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
@@ -150,7 +150,7 @@ fprintf('\nWendland\n')
 loc_fun_name = 'wendland' ; 
 for ii = 1:length(loc_rad)
     R = loc_rad(ii);
-    loc_params = struct('rYY', R, 'rXX', R, 'rXY', R, 'nu', 1, 'gammaYY', 0, 'gammaXX', 0, 'gammaXY', 0, 'k', 1, 'beta', 1); 
+    loc_params = struct('rYY', R, 'rXX', R, 'rXY', R, 'nu', 2, 'gammaYY', 0, 'gammaXX', 0, 'gammaXY', 0, 'k', 1, 'beta', 1); 
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
@@ -223,7 +223,7 @@ fprintf('\nWendland\n')
 loc_fun_name = 'wendland' ; 
 for ii = 1:length(loc_rad)
     R = loc_rad(ii);
-    loc_params = struct('rYY', R, 'rXX', R, 'rXY', R, 'nu', 1, 'gammaYY', 0, 'gammaXX', 0, 'gammaXY', 0, 'k', 1, 'beta', 1); 
+    loc_params = struct('rYY', R, 'rXX', R, 'rXY', R, 'nu', 2, 'gammaYY', 0, 'gammaXX', 0, 'gammaXY', 0, 'k', 1, 'beta', 1); 
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
