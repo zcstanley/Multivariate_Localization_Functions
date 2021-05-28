@@ -38,8 +38,8 @@ for ii = 1:length(loc_rad)
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-    RMSE_Y_YnoX_UVGC(ii) = mean(RMSE_Y(:, 1001:end), 1);
-    RMSE_X_YnoX_UVGC(ii) = mean(RMSE_X(:, 1001:end), 1);
+    RMSE_Y_YnoX_UVGC(ii) = mean(reshape(RMSE_Y(:, 1001:end), 1, []));
+    RMSE_X_YnoX_UVGC(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'loc_rad', 'RMSE_Y_YnoX_UVGC', 'RMSE_X_YnoX_UVGC')
 
@@ -53,8 +53,8 @@ for ii = 1:length(loc_rad)
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-    RMSE_Y_YnoX_UVBW(ii) = mean(RMSE_Y(:, 1001:end), 1);
-    RMSE_X_YnoX_UVBW(ii) = mean(RMSE_X(:, 1001:end), 1);
+    RMSE_Y_YnoX_UVBW(ii) = mean(reshape(RMSE_Y(:, 1001:end), 1, []));
+    RMSE_X_YnoX_UVBW(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'RMSE_Y_YnoX_UVBW', 'RMSE_X_YnoX_UVBW', '-append')
 
@@ -67,8 +67,8 @@ for ii = 1:length(loc_rad)
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-    RMSE_Y_YnoX_UVA(ii) = mean(RMSE_Y(:, 1001:end), 1);
-    RMSE_X_YnoX_UVA(ii) = mean(RMSE_X(:, 1001:end), 1);
+    RMSE_Y_YnoX_UVA(ii) = mean(reshape(RMSE_Y(:, 1001:end), 1, []));
+    RMSE_X_YnoX_UVA(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'RMSE_Y_YnoX_UVA', 'RMSE_X_YnoX_UVA', '-append')
 
@@ -81,8 +81,8 @@ for ii = 1:length(loc_rad)
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-    RMSE_Y_YnoX_UVW(ii) = mean(RMSE_Y(:, 1001:end), 1);
-    RMSE_X_YnoX_UVW(ii) = mean(RMSE_X(:, 1001:end), 1);
+    RMSE_Y_YnoX_UVW(ii) = mean(reshape(RMSE_Y(:, 1001:end), 1, []));
+    RMSE_X_YnoX_UVW(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'RMSE_Y_YnoX_UVW', 'RMSE_X_YnoX_UVW', '-append')
 
@@ -111,8 +111,8 @@ for ii = 1:length(loc_rad)
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-    RMSE_Y_XnoY_UVGC(ii) = mean(RMSE_Y(:, 1001:end), 1);
-    RMSE_X_XnoY_UVGC(ii) = mean(RMSE_X(:, 1001:end), 1);
+    RMSE_Y_XnoY_UVGC(ii) = mean(reshape(RMSE_Y(:, 1001:end), 1, []));
+    RMSE_X_XnoY_UVGC(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'RMSE_Y_XnoY_UVGC', 'RMSE_X_XnoY_UVGC', '-append')
 
@@ -126,8 +126,8 @@ for ii = 1:length(loc_rad)
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-    RMSE_Y_XnoY_UVBW(ii) = mean(RMSE_Y(:, 1001:end), 1);
-    RMSE_X_XnoY_UVBW(ii) = mean(RMSE_X(:, 1001:end), 1);
+    RMSE_Y_XnoY_UVBW(ii) = mean(reshape(RMSE_Y(:, 1001:end), 1, []));
+    RMSE_X_XnoY_UVBW(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'RMSE_Y_XnoY_UVBW', 'RMSE_X_XnoY_UVBW', '-append')
 
@@ -140,8 +140,8 @@ for ii = 1:length(loc_rad)
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-    RMSE_Y_XnoY_UVA(ii) = mean(RMSE_Y(:, 1001:end), 1);
-    RMSE_X_XnoY_UVA(ii) = mean(RMSE_X(:, 1001:end), 1);
+    RMSE_Y_XnoY_UVA(ii) = mean(reshape(RMSE_Y(:, 1001:end), 1, []));
+    RMSE_X_XnoY_UVA(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'RMSE_Y_XnoY_UVA', 'RMSE_X_XnoY_UVA', '-append')
 
@@ -154,8 +154,8 @@ for ii = 1:length(loc_rad)
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-    RMSE_Y_XnoY_UVW(ii) = mean(RMSE_Y(:, 1001:end), 1);
-    RMSE_X_XnoY_UVW(ii) = mean(RMSE_X(:, 1001:end), 1);
+    RMSE_Y_XnoY_UVW(ii) = mean(reshape(RMSE_Y(:, 1001:end), 1, []));
+    RMSE_X_XnoY_UVW(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'RMSE_Y_XnoY_UVW', 'RMSE_X_XnoY_UVW', '-append')
 
@@ -184,8 +184,8 @@ for ii = 1:length(loc_rad)
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-    RMSE_Y_BothXY_UVGC(ii) = mean(RMSE_Y(:, 1001:end), 1);
-    RMSE_X_BothXY_UVGC(ii) = mean(RMSE_X(:, 1001:end), 1);
+    RMSE_Y_BothXY_UVGC(ii) = mean(reshape(RMSE_Y(:, 1001:end), 1, []));
+    RMSE_X_BothXY_UVGC(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'RMSE_Y_BothXY_UVGC', 'RMSE_X_BothXY_UVGC', '-append')
 
@@ -199,8 +199,8 @@ for ii = 1:length(loc_rad)
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-    RMSE_Y_BothXY_UVBW(ii) = mean(RMSE_Y(:, 1001:end), 1);
-    RMSE_X_BothXY_UVBW(ii) = mean(RMSE_X(:, 1001:end), 1);
+    RMSE_Y_BothXY_UVBW(ii) = mean(reshape(RMSE_Y(:, 1001:end), 1, []));
+    RMSE_X_BothXY_UVBW(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'RMSE_Y_BothXY_UVBW', 'RMSE_X_BothXY_UVBW', '-append')
 
@@ -213,8 +213,8 @@ for ii = 1:length(loc_rad)
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-    RMSE_Y_BothXY_UVA(ii) = mean(RMSE_Y(:, 1001:end), 1);
-    RMSE_X_BothXY_UVA(ii) = mean(RMSE_X(:, 1001:end), 1);
+    RMSE_Y_BothXY_UVA(ii) = mean(reshape(RMSE_Y(:, 1001:end), 1, []));
+    RMSE_X_BothXY_UVA(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'RMSE_Y_BothXY_UVA', 'RMSE_X_BothXY_UVA', '-append')
 
@@ -227,7 +227,7 @@ for ii = 1:length(loc_rad)
     [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-    RMSE_Y_BothXY_UVW(ii) = mean(RMSE_Y(:, 1001:end), 1);
-    RMSE_X_BothXY_UVW(ii) = mean(RMSE_X(:, 1001:end), 1);
+    RMSE_Y_BothXY_UVW(ii) = mean(reshape(RMSE_Y(:, 1001:end), 1, []));
+    RMSE_X_BothXY_UVW(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'RMSE_Y_BothXY_UVW', 'RMSE_X_BothXY_UVW', '-append')
