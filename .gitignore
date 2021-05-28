@@ -142,4 +142,8 @@ octave-workspace
 .history
 .ionide
 
+### Bash files
+*.sh
+*.out
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,emacs,linux,matlab
