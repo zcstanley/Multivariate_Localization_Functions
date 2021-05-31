@@ -18,15 +18,7 @@ N = Ny + Nx;
 assert(length(spatial_locations)==N, 'Number of spatial locations does not match expectations.')
 
 % create distance matrix
-dis = zeros(N);
-for jj=1:N
-    for ii=1:N
-        d = min([abs(spatial_locations(ii)-spatial_locations(jj)), ...
-                 Ny-abs(spatial_locations(ii)-spatial_locations(jj))]);
-        delta_theta = pi * d / 180;
-        dis(ii, jj) = (180 * sqrt(2) / pi) * sqrt(1 - cos(delta_theta));
-    end
-end
+dis = create_distance_matrix(spatial_locations, Ny);
 
 % create localization matrix
 switch loc_fun_name
