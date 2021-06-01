@@ -33,6 +33,7 @@ RMSE_X_YnoX_MVA = zeros(length(gamma_yy), length(gamma_xx_a));
 RMSE_Y_YnoX_MVW = zeros(length(gamma_yy), length(gamma_xx_w));
 RMSE_X_YnoX_MVW = zeros(length(gamma_yy), length(gamma_xx_w));
 
+%{
 % 1A. Askey
 fprintf('\nAskey\n')
 loc_fun_name = 'askey' ; 
@@ -51,11 +52,12 @@ for ii = 1:length(gamma_yy)
     end
 end
 save('optimal_multivariate_gamma.mat', 'gamma_yy', 'gamma_xx_a', 'RMSE_Y_YnoX_MVA', 'RMSE_X_YnoX_MVA')
+%}
 
 % 1B. Wendland
 fprintf('\nWendland\n')
 loc_fun_name = 'wendland' ; 
-loc_params = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', wendland_nu); 
+loc_params = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', wendland_nu, 'k', 1); 
 for ii = 1:length(gamma_yy)
     for jj = 1:length(gamma_xx_w)
         loc_params.gammaYY = gamma_yy(ii);
@@ -106,10 +108,10 @@ for ii = 1:length(gamma_yy)
 end
 save('optimal_multivariate_gamma.mat', 'RMSE_Y_XnoY_MVA', 'RMSE_X_XnoY_MVA', '-append')
 
-% 1B. Wendland
+% 2B. Wendland
 fprintf('\nWendland\n')
 loc_fun_name = 'wendland' ; 
-loc_params = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', wendland_nu); 
+loc_params = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', wendland_nu, 'k', 1); 
 for ii = 1:length(gamma_yy)
     for jj = 1:length(gamma_xx_w)
         loc_params.gammaYY = gamma_yy(ii);

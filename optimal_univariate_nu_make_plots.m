@@ -44,3 +44,23 @@ set(gcf, 'Position',  [100, 100, 800, 800])
 
 saveas(gcf, 'Plots/optimal_nu_XnoY.png')
 
+% 3. Both X and Y
+figure
+subplot(2,1,1)
+plot( askey_nu, RMSE_X_BothXY_UVA, '-o', wendland_nu, RMSE_X_BothXY_UVW, '-o', 'LineWidth', 3)
+ylabel('RMSE X')
+xlabel('nu')
+title('Observe X and Y: Optimal univariate nu')
+legend('Askey', 'Wendland')
+set(gca, 'FontSize', 18)
+
+subplot(2,1,2)
+plot( askey_nu, RMSE_Y_BothXY_UVA,'-o', wendland_nu, RMSE_Y_BothXY_UVW, '-o', 'LineWidth', 3)
+ylabel('RMSE Y')
+xlabel('nu')
+legend('Askey', 'Wendland')
+set(gca, 'FontSize', 18)
+set(gcf, 'Position',  [100, 100, 800, 800])
+
+saveas(gcf, 'Plots/optimal_nu_BothXY.png')
+

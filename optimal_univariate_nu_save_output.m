@@ -15,7 +15,6 @@ start = 1001;           % first assimilation cycle considered in RMSE computatio
 
 %% Run Experiments
 
-%{
 % 1. All Y, No X
 fprintf('All Y, No X.\n')
 dtObs = 0.005;         % Time between assimilation cycles
@@ -102,7 +101,7 @@ for ii = 1:length(wendland_nu)
     RMSE_X_XnoY_UVW(ii) = mean(reshape(RMSE_X(:, start:end), 1, []));
 end
 save('optimal_univariate_nu.mat', 'RMSE_Y_XnoY_UVW', 'RMSE_X_XnoY_UVW', '-append')
-%}
+
 
 % 3. Both X and Y
 fprintf('\nBoth X and Y.\n')
