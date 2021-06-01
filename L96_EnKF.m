@@ -23,15 +23,15 @@ function [rmsY, rmsX, fcast_err] = L96_EnKF(params, Nt, dtObs, sigma2Y, sigma2X,
 
 %% Initial set up
 [Ny, Nx, N, NoY, NoX, No] = derived_parameters(params, Frac_Obs_Y, Frac_Obs_X);
-[XT, T, X, XM] = compute_true_solution(params, N, Ne, Nt, dtObs);
+[XT, ~, X, XM] = compute_true_solution(params, N, Ne, Nt, dtObs);
 s = set_up_spatial_locations(x_position, params, Ny, Nx);
 loc = create_localization_matrix(s, Ny, Nx, loc_fun_name, loc_params);
 [H, R, Y, YN] = set_up_observations(Ny, Nx, NoY, NoX, Nt, Ne, sigma2Y, sigma2X, XT);
 if Adapt_Inf
     [rInf, rSig, obs_var, LS] = set_up_adaptive_inflation(rInf, N, NoY, NoX, Nt, sigma2Y, sigma2X);
 end
-rmsY = zeros(1, Nt);
-rmsX = zeros(1, Nt);
+rmsY = NaN(1, Nt);
+rmsX = NaN(1, Nt);
 if True_Fcast_Err 
     fcast_err = zeros(N, N, Nt);
 end
