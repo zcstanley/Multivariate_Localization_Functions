@@ -42,7 +42,7 @@ for ii = 1:length(gamma_yy)
         loc_params.gammaYY = gamma_yy(ii);
         loc_params.gammaXX = gamma_xx_a(jj);
         loc_params.gammaXY = askey_wendland_gamma_cross(loc_params); 
-        loc_params.beta = askey_beta_max(params);
+        loc_params.beta = askey_beta_max(loc_params);
         [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
@@ -61,7 +61,7 @@ for ii = 1:length(gamma_yy)
         loc_params.gammaYY = gamma_yy(ii);
         loc_params.gammaXX = gamma_xx_w(jj);
         loc_params.gammaXY = askey_wendland_gamma_cross(loc_params); 
-        loc_params.beta = wendland_beta_max(params);
+        loc_params.beta = wendland_beta_max(loc_params);
         [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
@@ -96,7 +96,7 @@ for ii = 1:length(gamma_yy)
         loc_params.gammaYY = gamma_yy(ii);
         loc_params.gammaXX = gamma_xx_a(jj);
         loc_params.gammaXY = askey_wendland_gamma_cross(loc_params); 
-        loc_params.beta = askey_beta_max(params);
+        loc_params.beta = askey_beta_max(loc_params);
         [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
@@ -115,7 +115,7 @@ for ii = 1:length(gamma_yy)
         loc_params.gammaYY = gamma_yy(ii);
         loc_params.gammaXX = gamma_xx_w(jj);
         loc_params.gammaXY = askey_wendland_gamma_cross(loc_params); 
-        loc_params.beta = wendland_beta_max(params);
+        loc_params.beta = wendland_beta_max(loc_params);
         [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
