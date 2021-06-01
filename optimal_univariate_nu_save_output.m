@@ -1,6 +1,6 @@
 %% Set fixed parameters
 params = struct('K',36,'J',10,'F',10,'a',10,'b',10,'h',2);  %L96 params
-Nt = 2;              % Number of assimilation cycles
+Nt = 3000;              % Number of assimilation cycles
 sigma2Y = 0.005;        % Y obs error variance
 sigma2X = 0.28;         % X obs error variance
 Ne = 20;                % Ensemble size
@@ -8,10 +8,10 @@ x_position = 'middle';  % Where is X_k located? (middle or first)
 rInf = sqrt(1.21);      % Inflation factor 
 Adapt_Inf = true;       % Use adaptive inflation or constant inflation?
 True_Fcast_Err = false; % Save true forecast error correlations?
-Ntrial = 1;             % Number of trials
+Ntrial = 3;             % Number of trials
 askey_nu = [1, 1.5, 2, 2.5];    % nu for univariate Askey
 wendland_nu = askey_nu+1;       % nu for univariate Wendland
-start = 1;           % first assimilation cycle considered in RMSE computations
+start = 1001;           % first assimilation cycle considered in RMSE computations
 
 %% Run Experiments
 

@@ -13,6 +13,7 @@ loc_rad = [5, 10, 15, 20, 30, 45]; % localization radii
 
 %% Run Experiments
 
+%{
 % 1. All Y, No X
 fprintf('All Y, No X.\n')
 dtObs = 0.005;         % Time between assimilation cycles
@@ -158,12 +159,15 @@ for ii = 1:length(loc_rad)
     RMSE_X_XnoY_UVW(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'RMSE_Y_XnoY_UVW', 'RMSE_X_XnoY_UVW', '-append')
+%}
 
 % 3. Both X and Y
 fprintf('\nBoth X and Y.\n')
 dtObs = 0.005;          % Time between assimilation cycles
 Frac_Obs_Y = 0.75;      % Fraction of Y variables that are observed
 Frac_Obs_X = 0.75;      % Fraction of X variables that are observed
+sigma2Y = 0.01;         % Y obs error variance
+sigma2X = 0.57;         % X obs error variance
 
 % Initialize arrays
 RMSE_Y_BothXY_UVGC = zeros(1, length(loc_rad));
@@ -188,7 +192,6 @@ for ii = 1:length(loc_rad)
     RMSE_X_BothXY_UVGC(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'RMSE_Y_BothXY_UVGC', 'RMSE_X_BothXY_UVGC', '-append')
-
 
 % 3B. Bolin-Wallin
 fprintf('\nBolin-Wallin\n')
