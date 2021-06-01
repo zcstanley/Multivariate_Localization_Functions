@@ -13,7 +13,6 @@ loc_rad = [5, 10, 15, 20, 30, 45]; % localization radii
 
 %% Run Experiments
 
-%{
 % 1. All Y, No X
 fprintf('All Y, No X.\n')
 dtObs = 0.005;         % Time between assimilation cycles
@@ -159,7 +158,7 @@ for ii = 1:length(loc_rad)
     RMSE_X_XnoY_UVW(ii) = mean(reshape(RMSE_X(:, 1001:end), 1, []));
 end
 save('optimal_univariate_localization_radius.mat', 'RMSE_Y_XnoY_UVW', 'RMSE_X_XnoY_UVW', '-append')
-%}
+
 
 % 3. Both X and Y
 fprintf('\nBoth X and Y.\n')
