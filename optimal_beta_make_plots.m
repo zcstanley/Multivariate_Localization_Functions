@@ -59,3 +59,35 @@ legend('Gaspari-Cohn', 'Bolin-Wallin', 'location', 'southeast')
 set(gca, 'FontSize', 18)
 set(gcf, 'Position',  [100, 100, 800, 800])
 
+saveas(gcf, 'Plots/optimal_beta_XnoY.png')
+
+%% 3. Plot Both X and Y
+rYY = 15;
+rXX = 40;
+
+% Beta max for each function
+bmax_gc_BothXY = gaspari_cohn_beta_max(struct('rYY', rYY, 'rXX', rXX));
+b_gc_BothXY = [0.1:0.1:bmax_gc_BothXY, bmax_gc_BothXY];
+bmax_bw_BothXY = bolin_wallin_beta_max(struct('rYY', rYY, 'rXX', rXX));
+b_bw_BothXY = [0.1:0.1:bmax_bw_BothXY, bmax_bw_BothXY];
+
+% plot 
+figure
+subplot(2,1,1)
+plot( b_gc_BothXY, RMSE_X_BothXY_MVGC, '-o', b_bw_BothXY, RMSE_X_BothXY_MVBW, '-o', 'LineWidth', 3)
+ylabel('RMSE X')
+xlabel('cross-localization weight factor')
+title('Observe X and Y: Optimal cross-localization weight factor')
+legend('Gaspari-Cohn', 'Bolin-Wallin', 'location', 'southeast')
+set(gca, 'FontSize', 18)
+
+subplot(2,1,2)
+plot( b_gc_BothXY, RMSE_Y_BothXY_MVGC, '-o', b_bw_BothXY, RMSE_Y_BothXY_MVBW, '-o', 'LineWidth', 3)
+ylabel('RMSE Y')
+xlabel('cross-localization weight factor')
+legend('Gaspari-Cohn', 'Bolin-Wallin', 'location', 'southeast')
+set(gca, 'FontSize', 18)
+set(gcf, 'Position',  [100, 100, 800, 800])
+
+saveas(gcf, 'Plots/optimal_beta_BothXY.png')
+
