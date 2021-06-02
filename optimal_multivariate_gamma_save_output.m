@@ -33,7 +33,6 @@ RMSE_X_YnoX_MVA = zeros(length(gamma_yy), length(gamma_xx_a));
 RMSE_Y_YnoX_MVW = zeros(length(gamma_yy), length(gamma_xx_w));
 RMSE_X_YnoX_MVW = zeros(length(gamma_yy), length(gamma_xx_w));
 
-%{
 % 1A. Askey
 fprintf('\nAskey\n')
 loc_fun_name = 'askey' ; 
@@ -52,7 +51,6 @@ for ii = 1:length(gamma_yy)
     end
 end
 save('optimal_multivariate_gamma.mat', 'gamma_yy', 'gamma_xx_a', 'RMSE_Y_YnoX_MVA', 'RMSE_X_YnoX_MVA')
-%}
 
 % 1B. Wendland
 fprintf('\nWendland\n')
