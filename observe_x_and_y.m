@@ -11,12 +11,12 @@ start = 1001;           % first assimilation cycle considered in RMSE computatio
 dtObs = 0.005;          % Time between assimilation cycles
 Frac_Obs_Y = 0.75;      % Fraction of Y variables that are observed
 Frac_Obs_X = 0.75;      % Fraction of X variables that are observed
-sigma2Y = 0.01;         % Y obs error variance
-sigma2X = 0.57;         % X obs error variance
+sigma2Y = 0.02;         % Y obs error variance
+sigma2X = 1.1;         % X obs error variance
 rYY = 15;               % Localization radius for process Y
 rXX = 40;               % Localization radius for process X
+savefile = 'observe_x_and_y_20pctvar.mat';
 
-%{
 %% Univariate functions
 fprintf('\nUnivariate\n')
 
@@ -28,7 +28,7 @@ loc_params = struct('rYY', rYY, 'rXX', rYY, 'beta', 1); % localization parameter
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
-save('observe_x_and_y.mat',  'RMSE_Y_BothXY_UVGC', 'RMSE_X_BothXY_UVGC')
+save(savefile,  'RMSE_Y_BothXY_UVGC', 'RMSE_X_BothXY_UVGC')
 
 
 % 1B. Bolin-Wallin
@@ -38,7 +38,7 @@ loc_params = struct('rYY', rYY, 'rXX', rYY, 'beta', 1);
 [RMSE_Y_BothXY_UVBW, RMSE_X_BothXY_UVBW] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-save('observe_x_and_y.mat', 'RMSE_Y_BothXY_UVBW', 'RMSE_X_BothXY_UVBW', '-append')
+save(savefile, 'RMSE_Y_BothXY_UVBW', 'RMSE_X_BothXY_UVBW', '-append')
 
 % 1C. Askey
 fprintf('\nAskey\n')
@@ -48,7 +48,7 @@ loc_params = struct('rYY', rYY, 'rXX', rYY, 'rXY', rYY, 'nu', 1,...
 [RMSE_Y_BothXY_UVA, RMSE_X_BothXY_UVA] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-save('observe_x_and_y.mat', 'RMSE_Y_BothXY_UVA', 'RMSE_X_BothXY_UVA', '-append')
+save(savefile, 'RMSE_Y_BothXY_UVA', 'RMSE_X_BothXY_UVA', '-append')
 
 % 1D. Wendland
 fprintf('\nWendland\n')
@@ -59,9 +59,9 @@ loc_params = struct('rYY', rYY, 'rXX', rYY, 'rXY', rYY, 'nu', 2,...
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
-save('observe_x_and_y.mat', 'RMSE_Y_BothXY_UVW', 'RMSE_X_BothXY_UVW', '-append')
+save(savefile, 'RMSE_Y_BothXY_UVW', 'RMSE_X_BothXY_UVW', '-append')
 
-%}
+
 %% Multivariate functions
 fprintf('\nMultivariate\n')
 
@@ -73,7 +73,7 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'beta', 0.3); % localization paramet
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
-save('observe_x_and_y.mat',  'RMSE_Y_BothXY_MVGC', 'RMSE_X_BothXY_MVGC', '-append')
+save(savefile,  'RMSE_Y_BothXY_MVGC', 'RMSE_X_BothXY_MVGC', '-append')
 
 
 % 2B. Bolin-Wallin
@@ -83,7 +83,7 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'beta', 0.1);
 [RMSE_Y_BothXY_MVBW, RMSE_X_BothXY_MVBW] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-save('observe_x_and_y.mat', 'RMSE_Y_BothXY_MVBW', 'RMSE_X_BothXY_MVBW', '-append')
+save(savefile, 'RMSE_Y_BothXY_MVBW', 'RMSE_X_BothXY_MVBW', '-append')
 
 %% Weakly coupled
 fprintf('\nWeakly Coupled\n')
@@ -96,7 +96,7 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'beta', 0); % localization parameter
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
-save('observe_x_and_y.mat',  'RMSE_Y_BothXY_WCGC', 'RMSE_X_BothXY_WCGC', '-append')
+save(savefile,  'RMSE_Y_BothXY_WCGC', 'RMSE_X_BothXY_WCGC', '-append')
 
 
 % 3B. Bolin-Wallin
@@ -106,4 +106,4 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'beta', 0);
 [RMSE_Y_BothXY_WCBW, RMSE_X_BothXY_WCBW] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
-save('observe_x_and_y.mat', 'RMSE_Y_BothXY_WCBW', 'RMSE_X_BothXY_WCBW', '-append')
+save(savefile, 'RMSE_Y_BothXY_WCBW', 'RMSE_X_BothXY_WCBW', '-append')
