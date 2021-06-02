@@ -17,7 +17,7 @@ gamma_xx_w = [0,1,2,3,4,5,6,7,8,9];     % values of gamm_xx for Wendland
 start = 1001;           % first assimilation cycle considered in RMSE computations
 
 %% Run Experiments
-
+%{
 % 1. All Y, No X
 fprintf('All Y, No X.\n')
 dtObs = 0.005;         % Time between assimilation cycles
@@ -124,3 +124,59 @@ for ii = 1:length(gamma_yy)
     end
 end
 save('optimal_multivariate_gamma.mat', 'RMSE_Y_XnoY_MVW', 'RMSE_X_XnoY_MVW', '-append')
+%}
+
+% 3. Both X and Y
+fprintf('\nBoth X and Y.\n')
+dtObs = 0.005;          % Time between assimilation cycles
+Frac_Obs_Y = 0.75;      % Fraction of Y variables that are observed
+Frac_Obs_X = 0.75;      % Fraction of X variables that are observed
+sigma2Y = 0.01;         % Y obs error variance
+sigma2X = 0.57;         % X obs error variance
+rYY = 15;               % Localization radius for process Y
+rXX = 40;               % Localization radius for process X
+rXY = min(rYY, rXX);
+
+% Initialize arrays
+RMSE_Y_BothXY_MVA = zeros(length(gamma_yy), length(gamma_xx_a));
+RMSE_X_BothXY_MVA = zeros(length(gamma_yy), length(gamma_xx_a));
+RMSE_Y_BothXY_MVW = zeros(length(gamma_yy), length(gamma_xx_w));
+RMSE_X_BothXY_MVW = zeros(length(gamma_yy), length(gamma_xx_w));
+
+% 3A. Askey
+fprintf('\nAskey\n')
+loc_fun_name = 'askey' ; 
+loc_params = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', askey_nu); 
+for ii = 1:length(gamma_yy)
+    for jj = 1:length(gamma_xx_a)
+        loc_params.gammaYY = gamma_yy(ii);
+        loc_params.gammaXX = gamma_xx_a(jj);
+        loc_params.gammaXY = askey_wendland_gamma_cross(loc_params); 
+        loc_params.beta = askey_beta_max(loc_params);
+        [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
+                                Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
+                                loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
+        RMSE_Y_BothXY_MVA(ii, jj) = mean(reshape(RMSE_Y(:, start:end), 1, []));
+        RMSE_X_BothXY_MVA(ii, jj) = mean(reshape(RMSE_X(:, start:end), 1, []));
+    end
+end
+save('optimal_multivariate_gamma.mat', 'RMSE_Y_BothXY_MVA', 'RMSE_X_BothXY_MVA', '-append')
+
+% 3B. Wendland
+fprintf('\nWendland\n')
+loc_fun_name = 'wendland' ; 
+loc_params = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', wendland_nu, 'k', 1); 
+for ii = 1:length(gamma_yy)
+    for jj = 1:length(gamma_xx_w)
+        loc_params.gammaYY = gamma_yy(ii);
+        loc_params.gammaXX = gamma_xx_w(jj);
+        loc_params.gammaXY = askey_wendland_gamma_cross(loc_params); 
+        loc_params.beta = wendland_beta_max(loc_params);
+        [RMSE_Y, RMSE_X] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
+                                Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
+                                loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
+        RMSE_Y_BothXY_MVW(ii, jj) = mean(reshape(RMSE_Y(:, start:end), 1, []));
+        RMSE_X_BothXY_MVW(ii, jj) = mean(reshape(RMSE_X(:, start:end), 1, []));
+    end
+end
+save('optimal_multivariate_gamma.mat', 'RMSE_Y_BothXY_MVW', 'RMSE_X_BothXY_MVW', '-append')
