@@ -37,7 +37,7 @@ set(gcf, 'Position',  [100, 100, 800, 800])
 
 saveas(gcf, 'Plots/optimal_mv_loc_rad_YnoX.png')
 
-%% 1. Plot All X, No Y
+%% 2. Plot All X, No Y
 
 RMSE_X_XnoY_MVMean = mean([RMSE_X_XnoY_MVGC; RMSE_X_XnoY_MVBW; RMSE_X_XnoY_MVA; RMSE_X_XnoY_MVW]); 
 RMSE_Y_XnoY_MVMean = mean([RMSE_Y_XnoY_MVGC; RMSE_Y_XnoY_MVBW; RMSE_Y_XnoY_MVA; RMSE_Y_XnoY_MVW]); 
@@ -68,6 +68,38 @@ set(gca, 'FontSize', 18)
 set(gcf, 'Position',  [100, 100, 800, 800])
 
 saveas(gcf, 'Plots/optimal_mv_loc_rad_XnoY.png')
+
+%% 3. Plot Both X and Y
+
+RMSE_X_BothXY_MVMean = mean([RMSE_X_BothXY_MVGC; RMSE_X_BothXY_MVBW; RMSE_X_BothXY_MVA; RMSE_X_BothXY_MVW]); 
+RMSE_Y_BothXY_MVMean = mean([RMSE_Y_BothXY_MVGC; RMSE_Y_BothXY_MVBW; RMSE_Y_BothXY_MVA; RMSE_Y_BothXY_MVW]); 
+
+figure
+subplot(2,1,1)
+plot( loc_rad, RMSE_X_BothXY_MVGC, '-o', loc_rad, RMSE_X_BothXY_MVBW, '-o', ...
+      loc_rad, RMSE_X_BothXY_MVA, '-o', loc_rad, RMSE_X_BothXY_MVW, '-o', 'LineWidth', 3)
+hold on
+plot(loc_rad, RMSE_X_BothXY_MVMean, 'k--', 'LineWidth', 3)
+hold off
+ylabel('RMSE X')
+xlabel('Localization radius')
+title('Observe X and Y: Optimal multivariate localization radius for X')
+legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland', 'Mean')
+set(gca, 'FontSize', 18)
+
+subplot(2,1,2)
+plot( loc_rad, RMSE_Y_BothXY_MVGC, '-o', loc_rad, RMSE_Y_BothXY_MVBW, '-o', ...
+      loc_rad, RMSE_Y_BothXY_MVA,'-o', loc_rad, RMSE_Y_BothXY_MVW, '-o', 'LineWidth', 3)
+hold on
+plot(loc_rad, RMSE_Y_BothXY_MVMean, 'k--', 'LineWidth', 3)
+hold off
+ylabel('RMSE Y')
+xlabel('Localization radius')
+legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland', 'Mean')
+set(gca, 'FontSize', 18)
+set(gcf, 'Position',  [100, 100, 800, 800])
+
+saveas(gcf, 'Plots/optimal_mv_loc_rad_BothXY.png')
 
 
 

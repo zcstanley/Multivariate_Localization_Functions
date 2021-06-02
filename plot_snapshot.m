@@ -21,11 +21,18 @@ sx = r.* cos(sang);
 sy = r.* sin(sang);
 sz = XT(:, 1113);
 
-plot3(sx([1:Ny, 1]), sy([1:Ny,1]), sz([1:Ny,1]), 'k-', 'LineWidth', 3)
+% Define colors
+ycolor = [16, 36, 66]./256;
+xcolor = [42, 120, 122]./256;
+
+plot3(sx([Ny+1:N,Ny+1]), sy([Ny+1:N, Ny+1]), sz([Ny+1:N, Ny+1]), '--.',... 
+      'Color', xcolor, 'LineWidth', 3, 'MarkerSize', 18)
 hold on
-plot3(sx([Ny+1:N,Ny+1]), sy([Ny+1:end, Ny+1]), sz([Ny+1:end, Ny+1]), 'k--.', 'LineWidth', 3, 'MarkerSize', 18)
-zlabel('$Y_{j,k}, X_k$', 'Interpreter', 'latex')
-legend({'$Y$', '$X$'}, 'Interpreter', 'latex')
+plot3(sx([1:Ny, 1]), sy([1:Ny,1]), sz([1:Ny,1]), '-', 'Color', ycolor, 'LineWidth', 3)
+zlabel('$X_k, Y_{j,k}$', 'Interpreter', 'latex')
+xlim([-60, 60])
+ylim([-60, 60])
+legend({'$X$', '$Y$'}, 'Interpreter', 'latex')
 set(gca, 'FontSize', 18)
 hold off
-%saveas(gcf, '../Plots/L96_circle_snapshot.png')
+saveas(gcf, 'Plots/L96_circle_snapshot.png')
