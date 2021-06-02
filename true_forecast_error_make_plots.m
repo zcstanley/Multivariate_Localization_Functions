@@ -34,7 +34,7 @@ title('Observe both X and Y')
 colormap(flipud(bone));
 colorbar
 
-%% Plot correaltion by distance
+%% Plot correlation by distance
 
 % distance matrix
 s = set_up_spatial_locations(x_position, params, Ny, Nx);
@@ -42,7 +42,7 @@ dis = create_distance_matrix(s, Ny);
 a = params.a;
 
 % which correlation?
-corr_mat = FCAST_ERR_XnoY;
+corr_mat = FCAST_ERR_YnoX;
 
 % YY correlations
 Cyy = zeros(Ny, Ny/a);
@@ -88,7 +88,10 @@ legend({'Cov$(Y_{5, k_1}, Y_{j, k_2})$','Cov$(X_{k_1}, X_{k_2})$',...
         'Cov$(X_{k_1}, Y_{j, k_2})$', 'Cov$(Y_{5, k_1}, X_{k_2})$'}, 'Interpreter', 'latex')
 xlabel('Distance')
 ylabel('Correlation')
-title('True Forecast Error Correlation')
+title('Observe Y: True Forecast Error Correlation')
 set(gca, 'FontSize', 18)
+set(gcf, 'Position',  [100, 100, 1200, 400])
+
+saveas(gcf, 'Plots/true_fcast_err_corr_YnoX.png')
 
 

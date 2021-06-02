@@ -1,10 +1,10 @@
 %% Set fixed parameters
 params = struct('K',36,'J',10,'F',10,'a',10,'b',10,'h',2);  %L96 params
 Nt = 3000;              % Number of assimilation cycles
-sigma2Y = 0.02;        % Y obs error variance
+sigma2Y = 0.005;        % Y obs error variance
 sigma2X = 0.28;         % X obs error variance
 Ne = 20;                % Ensemble size
-x_position = 'middle';  % Where is X_k located? (middle or first)
+x_position = 'first';  % Where is X_k located? (middle or first)
 rInf = 1.1;             % Inflation factor 
 Adapt_Inf = true;       % Use adaptive inflation or constant inflation?
 True_Fcast_Err = false; % Save true forecast error correlations?
@@ -15,7 +15,7 @@ Frac_Obs_Y = 1;         % Fraction of Y variables that are observed
 Frac_Obs_X = 0;         % Fraction of X variables that are observed
 rYY = 15;               % within-component localization radius for Y
 rXX = 45;               % within-component localization radius for X
-savefile = 'observe_y_20pctvar.mat';
+savefile = 'observe_y_xk_first.mat';
 
 %% Univariate functions
 
