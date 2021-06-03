@@ -4,18 +4,18 @@ Nt = 3000;              % Number of assimilation cycles
 sigma2Y = 0.005;        % Y obs error variance
 sigma2X = 0.28;         % X obs error variance
 Ne = 20;                % Ensemble size
-x_position = 'first';  % Where is X_k located? (middle or first)
+x_position = 'middle';  % Where is X_k located? (middle or first)
 rInf = 1.1;             % Inflation factor 
 Adapt_Inf = true;       % Use adaptive inflation or constant inflation?
 True_Fcast_Err = false; % Save true forecast error correlations?
-Ntrial = 3;             % Number of trials
+Ntrial = 50;             % Number of trials
 start = 1001;           % first assimilation cycle considered in RMSE computations
 dtObs = 0.005;          % Time between assimilation cycles
 Frac_Obs_Y = 1;         % Fraction of Y variables that are observed
 Frac_Obs_X = 0;         % Fraction of X variables that are observed
 rYY = 15;               % within-component localization radius for Y
 rXX = 45;               % within-component localization radius for X
-savefile = 'observe_y_xk_first.mat';
+savefile = 'observe_y_Ne50.mat';
 
 %% Univariate functions
 
