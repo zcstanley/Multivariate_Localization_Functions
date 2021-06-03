@@ -11,11 +11,11 @@ start = 1001;           % first assimilation cycle considered in RMSE computatio
 dtObs = 0.005;          % Time between assimilation cycles
 Frac_Obs_Y = 0.75;      % Fraction of Y variables that are observed
 Frac_Obs_X = 0.75;      % Fraction of X variables that are observed
-sigma2Y = 0.02;         % Y obs error variance
-sigma2X = 1.1;         % X obs error variance
+sigma2Y = 0.005;         % Y obs error variance
+sigma2X = 2.8;         % X obs error variance
 rYY = 15;               % Localization radius for process Y
 rXX = 40;               % Localization radius for process X
-savefile = 'observe_x_and_y_20pctvar.mat';
+savefile = 'observe_x_and_y.mat';
 
 %% Univariate functions
 fprintf('\nUnivariate\n')
