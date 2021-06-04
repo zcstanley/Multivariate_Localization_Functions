@@ -13,7 +13,7 @@ start = 1001;           % first assimilation cycle considered in RMSE computatio
 
 %% Run Experiments
 
-
+%{
 %% 1. All Y, No X
 fprintf('All Y, No X.\n')
 dtObs = 0.005;         % Time between assimilation cycles
@@ -205,6 +205,7 @@ for ii = 1:length(b_w_XnoY)
     RMSE_X_XnoY_MVW(ii) = mean(reshape(RMSE_X(:, start:end), 1, []));
 end
 save('optimal_beta.mat', 'b_w_XnoY', 'RMSE_Y_XnoY_MVW', 'RMSE_X_XnoY_MVW', '-append')
+%}
 
 %% 3. Both X and Y
 fprintf('\nBoth X and Y.\n')
@@ -263,11 +264,11 @@ save('optimal_beta.mat', 'RMSE_Y_BothXY_MVBW', 'RMSE_X_BothXY_MVBW', '-append')
 loc_params_askey = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', 1,... 
                     'gammaYY', 2, 'gammaXX', 1, 'gammaXY', 19/16); 
 bmax_a = askey_beta_max(loc_params_askey);
-b_a_XnoY = [0.1:0.1:bmax_a, bmax_a];
+b_a_BothXY = [0.1:0.1:bmax_a, bmax_a];
 loc_params_wendland = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', 2,... 
                     'gammaYY', 2, 'gammaXX', 0, 'gammaXY', 1, 'k', 1);
 bmax_w = wendland_beta_max(loc_params_wendland);
-b_w_XnoY = [0.1:0.1:bmax_w, bmax_w];
+b_w_BothXY = [0.1:0.1:bmax_w, bmax_w];
 
 % Initialize arrays
 RMSE_Y_BothXY_MVA = zeros(1, length(b_a_BothXY));
