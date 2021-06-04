@@ -14,18 +14,20 @@ b_bw_YnoX = [0.1:0.1:bmax_bw_YnoX, bmax_bw_YnoX];
 % plot 
 figure
 subplot(2,1,1)
-plot( b_gc_YnoX, RMSE_X_YnoX_MVGC, '-o', b_bw_YnoX, RMSE_X_YnoX_MVBW, '-o', 'LineWidth', 3)
+plot( b_gc_YnoX, RMSE_X_YnoX_MVGC, '-o', b_bw_YnoX, RMSE_X_YnoX_MVBW, '-o',...
+      b_a_YnoX, RMSE_X_YnoX_MVA, '-o', b_w_YnoX, RMSE_X_YnoX_MVW, '-o', 'LineWidth', 3)
 ylabel('RMSE X')
 xlabel('cross-localization weight factor')
 title('Observe Y: Optimal cross-localization weight factor ')
-legend('Gaspari-Cohn', 'Bolin-Wallin')
+legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland')
 set(gca, 'FontSize', 18)
 
 subplot(2,1,2)
-plot( b_gc_YnoX, RMSE_Y_YnoX_MVGC, '-o', b_bw_YnoX, RMSE_Y_YnoX_MVBW, '-o', 'LineWidth', 3)
+plot( b_gc_YnoX, RMSE_Y_YnoX_MVGC, '-o', b_bw_YnoX, RMSE_Y_YnoX_MVBW, '-o', ...
+    b_a_YnoX, RMSE_Y_YnoX_MVA, '-o', b_w_YnoX, RMSE_Y_YnoX_MVW, '-o', 'LineWidth', 3)
 ylabel('RMSE Y')
 xlabel('cross-localization weight factor')
-legend('Gaspari-Cohn', 'Bolin-Wallin')
+legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland')
 set(gca, 'FontSize', 18)
 set(gcf, 'Position',  [100, 100, 800, 800])
 
@@ -44,18 +46,20 @@ b_bw_XnoY = [0.1:0.1:bmax_bw_XnoY, bmax_bw_XnoY];
 % plot 
 figure
 subplot(2,1,1)
-plot( b_gc_XnoY, RMSE_X_XnoY_MVGC, '-o', b_bw_XnoY, RMSE_X_XnoY_MVBW, '-o', 'LineWidth', 3)
+plot( b_gc_XnoY, RMSE_X_XnoY_MVGC, '-o', b_bw_XnoY, RMSE_X_XnoY_MVBW, '-o',...
+      b_a_XnoY, RMSE_X_XnoY_MVA, '-o', b_w_XnoY, RMSE_X_XnoY_MVW, '-o', 'LineWidth', 3)
 ylabel('RMSE X')
 xlabel('cross-localization weight factor')
 title('Observe X: Optimal cross-localization weight factor')
-legend('Gaspari-Cohn', 'Bolin-Wallin', 'location', 'southeast')
+legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland', 'location', 'southeast')
 set(gca, 'FontSize', 18)
 
 subplot(2,1,2)
-plot( b_gc_XnoY, RMSE_Y_XnoY_MVGC, '-o', b_bw_XnoY, RMSE_Y_XnoY_MVBW, '-o', 'LineWidth', 3)
+plot( b_gc_XnoY, RMSE_Y_XnoY_MVGC, '-o', b_bw_XnoY, RMSE_Y_XnoY_MVBW, '-o',...
+      b_a_XnoY, RMSE_Y_XnoY_MVA, '-o', b_w_XnoY, RMSE_Y_XnoY_MVW, '-o', 'LineWidth', 3)
 ylabel('RMSE Y')
 xlabel('cross-localization weight factor')
-legend('Gaspari-Cohn', 'Bolin-Wallin', 'location', 'southeast')
+legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland', 'location', 'southeast')
 set(gca, 'FontSize', 18)
 set(gcf, 'Position',  [100, 100, 800, 800])
 
@@ -74,18 +78,20 @@ b_bw_BothXY = [0.1:0.1:bmax_bw_BothXY, bmax_bw_BothXY];
 % plot 
 figure
 subplot(2,1,1)
-plot( b_gc_BothXY, RMSE_X_BothXY_MVGC, '-o', b_bw_BothXY, RMSE_X_BothXY_MVBW, '-o', 'LineWidth', 3)
+plot( b_gc_BothXY, RMSE_X_BothXY_MVGC, '-o', b_bw_BothXY, RMSE_X_BothXY_MVBW, '-o', ...
+      b_a_BothXY, RMSE_X_BothXY_MVA, '-o', b_w_BothXY, RMSE_X_BothXY_MVW, '-o', 'LineWidth', 3)
 ylabel('RMSE X')
 xlabel('cross-localization weight factor')
 title('Observe X and Y: Optimal cross-localization weight factor')
-legend('Gaspari-Cohn', 'Bolin-Wallin', 'location', 'southeast')
+legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland', 'location', 'southeast')
 set(gca, 'FontSize', 18)
 
 subplot(2,1,2)
-plot( b_gc_BothXY, RMSE_Y_BothXY_MVGC, '-o', b_bw_BothXY, RMSE_Y_BothXY_MVBW, '-o', 'LineWidth', 3)
+plot( b_gc_BothXY, RMSE_Y_BothXY_MVGC, '-o', b_bw_BothXY, RMSE_Y_BothXY_MVBW, '-o',...
+      b_a_BothXY, RMSE_Y_BothXY_MVA, '-o', b_w_BothXY, RMSE_Y_BothXY_MVW, '-o', 'LineWidth', 3)
 ylabel('RMSE Y')
 xlabel('cross-localization weight factor')
-legend('Gaspari-Cohn', 'Bolin-Wallin', 'location', 'southeast')
+legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland', 'location', 'southeast')
 set(gca, 'FontSize', 18)
 set(gcf, 'Position',  [100, 100, 800, 800])
 

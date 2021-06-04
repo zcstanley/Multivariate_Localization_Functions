@@ -11,13 +11,15 @@ start = 1001;           % first assimilation cycle considered in RMSE computatio
 dtObs = 0.005;          % Time between assimilation cycles
 Frac_Obs_Y = 0.75;      % Fraction of Y variables that are observed
 Frac_Obs_X = 0.75;      % Fraction of X variables that are observed
-sigma2Y = 0.005;         % Y obs error variance
-sigma2X = 2.8;         % X obs error variance
+sigma2Y = 0.01;         % Y obs error variance
+sigma2X = 0.57;         % X obs error variance
 rYY = 15;               % Localization radius for process Y
 rXX = 40;               % Localization radius for process X
-savefile = 'observe_x_and_y.mat';
+rXY = min(rYY, rXX);    % Cross-localization radius for Askey and Wendland
+savefile = 'observe_x_and_y_primary.mat';
 
 %% Univariate functions
+%{
 fprintf('\nUnivariate\n')
 
 % 1A. Gaspari-Cohn
@@ -60,7 +62,7 @@ loc_params = struct('rYY', rYY, 'rXX', rYY, 'rXY', rYY, 'nu', 2,...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
 save(savefile, 'RMSE_Y_BothXY_UVW', 'RMSE_X_BothXY_UVW', '-append')
-
+%}
 
 %% Multivariate functions
 fprintf('\nMultivariate\n')
@@ -85,6 +87,27 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'beta', 0.1);
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 save(savefile, 'RMSE_Y_BothXY_MVBW', 'RMSE_X_BothXY_MVBW', '-append')
 
+% 2C. Askey
+fprintf('\nAskey\n')
+loc_fun_name = 'askey' ;
+loc_params = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', 1,... 
+                    'gammaYY', 2, 'gammaXX', 1, 'gammaXY', 19/16, 'beta', 0.2); 
+[RMSE_Y_BothXY_MVA, RMSE_X_BothXY_MVA] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
+                                Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
+                                loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
+save(savefile, 'RMSE_Y_BothXY_MVA', 'RMSE_X_BothXY_MVA', '-append')
+
+% 2D. Wendland
+fprintf('\nWendland\n')
+loc_fun_name = 'wendland' ;
+loc_params= struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', 2,... 
+                    'gammaYY', 2, 'gammaXX', 0, 'gammaXY', 1, 'k', 1);
+loc_params.beta = wendland_beta_max(loc_params);
+[RMSE_Y_BothXY_MVW, RMSE_X_BothXY_MVW] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
+                                Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
+                                loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
+save(savefile, 'RMSE_Y_BothXY_MVW', 'RMSE_X_BothXY_MVW', '-append')
+
 %% Weakly coupled
 fprintf('\nWeakly Coupled\n')
 
@@ -107,3 +130,23 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'beta', 0);
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 save(savefile, 'RMSE_Y_BothXY_WCBW', 'RMSE_X_BothXY_WCBW', '-append')
+
+% 3C. Askey
+fprintf('\nAskey\n')
+loc_fun_name = 'askey' ;
+loc_params = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', 1,... 
+                    'gammaYY', 2, 'gammaXX', 1, 'gammaXY', 19/16, 'beta', 0); 
+[RMSE_Y_BothXY_WCA, RMSE_X_BothXY_WCA] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
+                                Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
+                                loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
+save(savefile, 'RMSE_Y_BothXY_WCA', 'RMSE_X_BothXY_WCA', '-append')
+
+% 3D. Wendland
+fprintf('\nWendland\n')
+loc_fun_name = 'wendland' ;
+loc_params= struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', 2,... 
+                    'gammaYY', 2, 'gammaXX', 0, 'gammaXY', 1, 'k', 1, 'beta', 0);
+[RMSE_Y_BothXY_WCW, RMSE_X_BothXY_WCW] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
+                                Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
+                                loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
+save(savefile, 'RMSE_Y_BothXY_WCW', 'RMSE_X_BothXY_WCW', '-append')

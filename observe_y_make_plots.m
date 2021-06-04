@@ -1,8 +1,8 @@
 %% Load output produced from script observe_y_save_output
-load('observe_y_20pctvar.mat') 
+load('observe_y_xk_first.mat') 
 addpath('violin/')
-title_str = 'Observe Y: 20% obs err variance';
-savename = 'Plots/obs_y_20pctvar_violins.png';
+title_str = 'Observe Y: X located at beginning of sector';
+savename = 'Plots/obs_y_xk_first_violins.png';
 
 % 1. RMSE X
 RMSE_X_full = [sort(RMSE_X_YnoX_UVGC(:)), sort(RMSE_X_YnoX_MVGC(:)), ...
