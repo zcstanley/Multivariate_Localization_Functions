@@ -8,7 +8,7 @@ x_position = 'middle';  % Where is X_k located? (middle or first)
 rInf = 1.1;             % Inflation factor 
 Adapt_Inf = true;       % Use adaptive inflation or constant inflation?
 True_Fcast_Err = false; % Save true forecast error correlations?
-Ntrial = 3;             % Number of trials
+Ntrial = 50;             % Number of trials
 start = 1001;           % first assimilation cycle considered in RMSE computations
 dtObs = 0.05;           % Time between assimilation cycles
 Frac_Obs_Y = 0;         % Fraction of Y variables that are observed
@@ -16,10 +16,10 @@ Frac_Obs_X = 1;         % Fraction of X variables that are observed
 rYY = 20;               % within-component localization radius for Y
 rXX = 40;               % within-component localization radius for X
 rXY = min(rYY, rXX);    % cross-localization radius for Askey and Wendland
-savefile = 'observe_x_primary.mat';
+savefile = 'observe_x_Ne50.mat';
 
 %% Univariate functions
-%{
+
 % 1A. Gaspari-Cohn
 fprintf('\nGaspari-Cohn\n')
 loc_fun_name = 'gaspari_cohn' ; % localization function name
@@ -30,7 +30,7 @@ loc_params = struct('rYY', rYY, 'rXX', rYY, 'beta', 1); % localization parameter
 
 save(savefile,  'RMSE_Y_XnoY_UVGC', 'RMSE_X_XnoY_UVGC')
 
-
+%{
 % 1B. Bolin-Wallin
 fprintf('\nBolin-Wallin\n')
 loc_fun_name = 'bolin_wallin' ;
@@ -75,7 +75,7 @@ loc_params.beta = gaspari_cohn_beta_max(loc_params);
 
 save(savefile,  'RMSE_Y_XnoY_MVGC', 'RMSE_X_XnoY_MVGC', '-append')
 
-
+%{
 % 2B. Bolin-Wallin
 fprintf('\nBolin-Wallin\n')
 loc_fun_name = 'bolin_wallin' ;
@@ -107,6 +107,7 @@ loc_params.beta = wendland_beta_max(loc_params);
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 save(savefile, 'RMSE_Y_XnoY_MVW', 'RMSE_X_XnoY_MVW', '-append')
+%}
 
 %% Weakly coupled
 
@@ -120,7 +121,7 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'beta', 0); % localization parameter
 
 save(savefile,  'RMSE_Y_XnoY_WCGC', 'RMSE_X_XnoY_WCGC', '-append')
 
-
+%{
 % 3B. Bolin-Wallin
 fprintf('\nBolin-Wallin\n')
 loc_fun_name = 'bolin_wallin' ;
@@ -140,7 +141,7 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', 1,...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 save(savefile, 'RMSE_Y_XnoY_WCA', 'RMSE_X_XnoY_WCA', '-append')
 
-% 2D. Wendland
+% 3D. Wendland
 fprintf('\nWendland\n')
 loc_fun_name = 'wendland' ;
 loc_params = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', 2,... 
@@ -150,3 +151,4 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', 2,...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 save(savefile, 'RMSE_Y_XnoY_WCW', 'RMSE_X_XnoY_WCW', '-append')
 
+%}
