@@ -20,6 +20,7 @@ savefile = 'observe_x_Ne50.mat';
 
 %% Univariate functions
 
+%{
 % 1A. Gaspari-Cohn
 fprintf('\nGaspari-Cohn\n')
 loc_fun_name = 'gaspari_cohn' ; % localization function name
@@ -29,8 +30,8 @@ loc_params = struct('rYY', rYY, 'rXX', rYY, 'beta', 1); % localization parameter
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
 save(savefile,  'RMSE_Y_XnoY_UVGC', 'RMSE_X_XnoY_UVGC')
+%}
 
-%{
 % 1B. Bolin-Wallin
 fprintf('\nBolin-Wallin\n')
 loc_fun_name = 'bolin_wallin' ;
@@ -60,10 +61,10 @@ loc_params = struct('rYY', rYY, 'rXX', rYY, 'rXY', rYY, 'nu', 2,...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
 save(savefile, 'RMSE_Y_XnoY_UVW', 'RMSE_X_XnoY_UVW', '-append')
-%}
 
 %% Multivariate functions
 
+%{
 % 2A. Gaspari-Cohn
 fprintf('\nGaspari-Cohn\n')
 loc_fun_name = 'gaspari_cohn' ; % localization function name
@@ -74,8 +75,8 @@ loc_params.beta = gaspari_cohn_beta_max(loc_params);
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
 save(savefile,  'RMSE_Y_XnoY_MVGC', 'RMSE_X_XnoY_MVGC', '-append')
+%}
 
-%{
 % 2B. Bolin-Wallin
 fprintf('\nBolin-Wallin\n')
 loc_fun_name = 'bolin_wallin' ;
@@ -107,10 +108,10 @@ loc_params.beta = wendland_beta_max(loc_params);
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 save(savefile, 'RMSE_Y_XnoY_MVW', 'RMSE_X_XnoY_MVW', '-append')
-%}
+
 
 %% Weakly coupled
-
+%{
 % 3A. Gaspari-Cohn
 fprintf('\nGaspari-Cohn\n')
 loc_fun_name = 'gaspari_cohn' ; % localization function name
@@ -120,8 +121,8 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'beta', 0); % localization parameter
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
 save(savefile,  'RMSE_Y_XnoY_WCGC', 'RMSE_X_XnoY_WCGC', '-append')
+%}
 
-%{
 % 3B. Bolin-Wallin
 fprintf('\nBolin-Wallin\n')
 loc_fun_name = 'bolin_wallin' ;
@@ -151,4 +152,3 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', 2,...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 save(savefile, 'RMSE_Y_XnoY_WCW', 'RMSE_X_XnoY_WCW', '-append')
 
-%}

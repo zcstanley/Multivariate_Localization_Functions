@@ -22,6 +22,7 @@ savefile = 'observe_x_and_y_Ne50.mat';
 
 fprintf('\nUnivariate\n')
 
+%{
 % 1A. Gaspari-Cohn
 fprintf('\nGaspari-Cohn\n')
 loc_fun_name = 'gaspari_cohn' ; % localization function name
@@ -31,8 +32,8 @@ loc_params = struct('rYY', rYY, 'rXX', rYY, 'beta', 1); % localization parameter
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
 save(savefile,  'RMSE_Y_BothXY_UVGC', 'RMSE_X_BothXY_UVGC')
+%}
 
-%{
 % 1B. Bolin-Wallin
 fprintf('\nBolin-Wallin\n')
 loc_fun_name = 'bolin_wallin' ;
@@ -62,11 +63,12 @@ loc_params = struct('rYY', rYY, 'rXX', rYY, 'rXY', rYY, 'nu', 2,...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
 save(savefile, 'RMSE_Y_BothXY_UVW', 'RMSE_X_BothXY_UVW', '-append')
-%}
+
 
 %% Multivariate functions
 fprintf('\nMultivariate\n')
 
+%{
 % 2A. Gaspari-Cohn
 fprintf('\nGaspari-Cohn\n')
 loc_fun_name = 'gaspari_cohn' ; % localization function name
@@ -76,8 +78,8 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'beta', 0.3); % localization paramet
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
 save(savefile,  'RMSE_Y_BothXY_MVGC', 'RMSE_X_BothXY_MVGC', '-append')
+%}
 
-%{
 % 2B. Bolin-Wallin
 fprintf('\nBolin-Wallin\n')
 loc_fun_name = 'bolin_wallin' ;
@@ -107,11 +109,12 @@ loc_params.beta = wendland_beta_max(loc_params);
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 save(savefile, 'RMSE_Y_BothXY_MVW', 'RMSE_X_BothXY_MVW', '-append')
-%}
+
 
 %% Weakly coupled
 fprintf('\nWeakly Coupled\n')
 
+%{
 % 3A. Gaspari-Cohn
 fprintf('\nGaspari-Cohn\n')
 loc_fun_name = 'gaspari_cohn' ; % localization function name
@@ -121,8 +124,8 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'beta', 0); % localization parameter
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
 save(savefile,  'RMSE_Y_BothXY_WCGC', 'RMSE_X_BothXY_WCGC', '-append')
+%}
 
-%{
 % 3B. Bolin-Wallin
 fprintf('\nBolin-Wallin\n')
 loc_fun_name = 'bolin_wallin' ;
@@ -151,4 +154,3 @@ loc_params= struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', 2,...
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 save(savefile, 'RMSE_Y_BothXY_WCW', 'RMSE_X_BothXY_WCW', '-append')
-%}
