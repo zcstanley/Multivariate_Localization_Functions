@@ -16,13 +16,14 @@ sigma2X = 0.57;         % X obs error variance
 rYY = 15;               % Localization radius for process Y
 rXX = 40;               % Localization radius for process X
 rXY = min(rYY, rXX);    % Cross-localization radius for Askey and Wendland
-savefile = 'observe_x_and_y_Ne50.mat';
+savefile = 'observe_x_and_y_Ne50_beta0.1.mat';
 
+%{
 %% Univariate functions
 
 fprintf('\nUnivariate\n')
 
-%{
+
 % 1A. Gaspari-Cohn
 fprintf('\nGaspari-Cohn\n')
 loc_fun_name = 'gaspari_cohn' ; % localization function name
@@ -32,7 +33,7 @@ loc_params = struct('rYY', rYY, 'rXX', rYY, 'beta', 1); % localization parameter
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
 save(savefile,  'RMSE_Y_BothXY_UVGC', 'RMSE_X_BothXY_UVGC')
-%}
+
 
 % 1B. Bolin-Wallin
 fprintf('\nBolin-Wallin\n')
@@ -63,23 +64,23 @@ loc_params = struct('rYY', rYY, 'rXX', rYY, 'rXY', rYY, 'nu', 2,...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
 save(savefile, 'RMSE_Y_BothXY_UVW', 'RMSE_X_BothXY_UVW', '-append')
-
+%}
 
 %% Multivariate functions
 fprintf('\nMultivariate\n')
 
-%{
+
 % 2A. Gaspari-Cohn
 fprintf('\nGaspari-Cohn\n')
 loc_fun_name = 'gaspari_cohn' ; % localization function name
-loc_params = struct('rYY', rYY, 'rXX', rXX, 'beta', 0.3); % localization parameters
+loc_params = struct('rYY', rYY, 'rXX', rXX, 'beta', 0.1); % localization parameters
 [RMSE_Y_BothXY_MVGC, RMSE_X_BothXY_MVGC] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
-save(savefile,  'RMSE_Y_BothXY_MVGC', 'RMSE_X_BothXY_MVGC', '-append')
-%}
+save(savefile,  'RMSE_Y_BothXY_MVGC', 'RMSE_X_BothXY_MVGC')%, '-append')
 
+%{
 % 2B. Bolin-Wallin
 fprintf('\nBolin-Wallin\n')
 loc_fun_name = 'bolin_wallin' ;
@@ -88,17 +89,19 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'beta', 0.1);
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 save(savefile, 'RMSE_Y_BothXY_MVBW', 'RMSE_X_BothXY_MVBW', '-append')
+%}
 
 % 2C. Askey
 fprintf('\nAskey\n')
 loc_fun_name = 'askey' ;
 loc_params = struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', 1,... 
-                    'gammaYY', 2, 'gammaXX', 1, 'gammaXY', 19/16, 'beta', 0.2); 
+                    'gammaYY', 2, 'gammaXX', 1, 'gammaXY', 19/16, 'beta', 0.1); 
 [RMSE_Y_BothXY_MVA, RMSE_X_BothXY_MVA] = L96_EnKF_Multitrial(params, Nt, dtObs, sigma2Y, sigma2X,... 
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 save(savefile, 'RMSE_Y_BothXY_MVA', 'RMSE_X_BothXY_MVA', '-append')
 
+%{
 % 2D. Wendland
 fprintf('\nWendland\n')
 loc_fun_name = 'wendland' ;
@@ -109,12 +112,13 @@ loc_params.beta = wendland_beta_max(loc_params);
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 save(savefile, 'RMSE_Y_BothXY_MVW', 'RMSE_X_BothXY_MVW', '-append')
+%}
 
-
+%{
 %% Weakly coupled
 fprintf('\nWeakly Coupled\n')
 
-%{
+
 % 3A. Gaspari-Cohn
 fprintf('\nGaspari-Cohn\n')
 loc_fun_name = 'gaspari_cohn' ; % localization function name
@@ -124,7 +128,7 @@ loc_params = struct('rYY', rYY, 'rXX', rXX, 'beta', 0); % localization parameter
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 
 save(savefile,  'RMSE_Y_BothXY_WCGC', 'RMSE_X_BothXY_WCGC', '-append')
-%}
+
 
 % 3B. Bolin-Wallin
 fprintf('\nBolin-Wallin\n')
@@ -154,3 +158,4 @@ loc_params= struct('rYY', rYY, 'rXX', rXX, 'rXY', rXY, 'nu', 2,...
                                 Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, ...
                                 loc_fun_name, loc_params, True_Fcast_Err, Ntrial);
 save(savefile, 'RMSE_Y_BothXY_WCW', 'RMSE_X_BothXY_WCW', '-append')
+%}
