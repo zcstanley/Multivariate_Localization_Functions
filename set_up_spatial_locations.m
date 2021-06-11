@@ -1,8 +1,9 @@
 function s = set_up_spatial_locations(x_position, params, Ny, Nx)
-% This function sets up the spatial locations for the state variables
+% Sets up the spatial locations for the state variables in 
+% bivariate Lorenz 96 model.
 % The implemented options are:
 %   middle : X is in the middle of the sector associated with it
-%   first : X is colocated with the first Y variable in the sector
+%   first  : X is colocated with the first Y variable in the sector
 %
 % INPUTS:
 % x_position is a string, either 'middle', or 'first'
@@ -12,6 +13,8 @@ function s = set_up_spatial_locations(x_position, params, Ny, Nx)
 % 
 % OUTPUT:
 % s = spatial locations
+%
+% Author: Zofia Stanley
 
 switch x_position
     case 'middle' 

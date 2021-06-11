@@ -2,6 +2,26 @@ function [new_inflate, new_inflate_sd] = ai_bayes_cov_inflate(Ne, prior_mean, pr
                 inflate, inflate_sd, gamma_corr, sd_lower_bound, sd_max_change)
 % Uses Gharamti 2017 algorithm in references on DART web site to update the 
 % distribution of inflation.
+%
+% INPUTS:
+% Ne = ensemble size
+% prior_mean = mean of prior
+% prior_var = variance of prior
+% obs = observation
+% obs_var = observation error variance
+% inflate = current inflation factor
+% inflate_sd = current inflation standard deviation
+% gamma_corr = localized prior sample correlation between the observation and state
+% sd_lower_bound = lower bound for updated inflation standard deviation
+% sd_max_change = % by which inflation s.d. can grow each time without
+%                   truncation
+%
+% OUTPUTS:
+% new_inflate = updated inflation factor
+% new_inflate_sd = updated inflation standard deviation
+%
+% Coded in FORTRAN by DART, Moved to Matlab by Zofia Stanley
+% https://github.com/NCAR/DART/blob/main/assimilation_code/modules/assimilation/adaptive_inflate_mod.f90
 
 
 % If gamma is 0, nothing changes

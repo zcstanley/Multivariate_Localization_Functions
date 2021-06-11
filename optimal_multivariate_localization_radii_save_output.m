@@ -1,3 +1,7 @@
+%% Saves output from EnKF with different multivariate localization radii
+%
+% Author: Zofia Stanley
+
 %% Set fixed parameters
 params = struct('K',36,'J',10,'F',10,'a',10,'b',10,'h',2);  %L96 params
 Nt = 3000;              % Number of assimilation cycles
@@ -14,7 +18,7 @@ start = 1001;           % first assimilation cycle considered in RMSE computatio
 
 %% Run Experiments
 
-%{
+
 % 1. All Y, No X
 fprintf('All Y, No X.\n')
 dtObs = 0.005;         % Time between assimilation cycles
@@ -186,7 +190,7 @@ for ii = 1:length(loc_rad)
     RMSE_X_XnoY_MVW(ii) = mean(reshape(RMSE_X(:, start:end), 1, []));
 end
 save('optimal_multivariate_localization_radii.mat', 'RMSE_Y_XnoY_MVW', 'RMSE_X_XnoY_MVW', '-append')
-%}
+
 
 
 % 3. Both X and Y

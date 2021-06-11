@@ -1,5 +1,5 @@
 function loc = create_localization_matrix(spatial_locations, Ny, Nx, loc_fun_name, loc_params)
-% This function forms a localization matrix
+% Forms a localization matrix
 %
 % INPUTS:
 % spatial_locations is an array 
@@ -10,17 +10,19 @@ function loc = create_localization_matrix(spatial_locations, Ny, Nx, loc_fun_nam
 %
 % OUTPUT:
 % loc = localization matrix
+%
+% Author: Zofia Stanley
 
-% check lengths
+% Check lengths
 loc_params.Ny = Ny;
 loc_params.Nx = Nx;
 N = Ny + Nx;
 assert(length(spatial_locations)==N, 'Number of spatial locations does not match expectations.')
 
-% create distance matrix
+% Create distance matrix
 dis = create_distance_matrix(spatial_locations, Ny);
 
-% create localization matrix
+% Create localization matrix
 switch loc_fun_name
     case 'gaspari_cohn' 
         loc = gaspari_cohn(dis, loc_params);

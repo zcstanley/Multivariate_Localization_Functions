@@ -1,6 +1,7 @@
 %__________________________________________________________________________
 % violin.m - Simple violin plot using matlab default kernel density estimation
-% Last update: 10/2015
+% Last update by Hoffmann H: 10/2015
+% Modified by Zofia Stanley: 06/2021
 %__________________________________________________________________________
 % This function creates violin plots based on kernel density estimation
 % using ksdensity with default settings. Please be careful when comparing pdfs
@@ -162,7 +163,11 @@ for i=1:size(Y,2)
     if isempty(b)==0
         [f, u, bb]=ksdensity(Y{i},'bandwidth',b(i));
     elseif isempty(b)
-        [f, u, bb]=ksdensity(Y{i});
+        if sum(isnan(Y{i}))== length(Y{i})
+            f = NaN; u = NaN; bb= NaN;
+        else
+            [f, u, bb]=ksdensity(Y{i});
+        end
     end
     
     f=f/max(f)*0.3; %normalize
@@ -212,33 +217,37 @@ for i=i:size(Y,2)
     hold on
     if setX == 0
         if plotmean == 1
-            p(1)=plot([interp1(U(:,i),F(:,i)+i,MX(:,i)), interp1(flipud(U(:,i)),flipud(i-F(:,i)),MX(:,i)) ],[MX(:,i) MX(:,i)],mc,'LineWidth',2);
+            if ~isnan(U(:, i))
+                p(1)=plot([interp1(U(:,i),F(:,i)+i,MX(:,i)), interp1(flipud(U(:,i)),flipud(i-F(:,i)),MX(:,i)) ],[MX(:,i) MX(:,i)],mc,'LineWidth',2);
+            end
         end
         if plotmedian == 1
-            p(2)=plot([interp1(U(:,i),F(:,i)+i,MED(:,i)), interp1(flipud(U(:,i)),flipud(i-F(:,i)),MED(:,i)) ],[MED(:,i) MED(:,i)],medc,'LineWidth',2);
+            if ~isnan(U(:, i))
+                p(2)=plot([interp1(U(:,i),F(:,i)+i,MED(:,i)), interp1(flipud(U(:,i)),flipud(i-F(:,i)),MED(:,i)) ],[MED(:,i) MED(:,i)],'Color', medc,'LineWidth',2);
+            end
         end
     elseif setX == 1
         if plotmean == 1
             p(1)=plot([interp1(U(:,i),F(:,i)+i,MX(:,i))+x(i)-i, interp1(flipud(U(:,i)),flipud(i-F(:,i)),MX(:,i))+x(i)-i],[MX(:,i) MX(:,i)],mc,'LineWidth',2);
         end
         if plotmedian == 1
-            p(2)=plot([interp1(U(:,i),F(:,i)+i,MED(:,i))+x(i)-i, interp1(flipud(U(:,i)),flipud(i-F(:,i)),MED(:,i))+x(i)-i],[MED(:,i) MED(:,i)],medc,'LineWidth',2);
+            p(2)=plot([interp1(U(:,i),F(:,i)+i,MED(:,i))+x(i)-i, interp1(flipud(U(:,i)),flipud(i-F(:,i)),MED(:,i))+x(i)-i],[MED(:,i) MED(:,i)],'Color', medc,'LineWidth',2);
         end
     end
 end
 
 %% Add legend if requested
-if plotlegend==1 & plotmean==1 | plotlegend==1 & plotmedian==1
+if plotlegend==1 && plotmean==1 | plotlegend==1 & plotmedian==1
     
-    if plotmean==1 & plotmedian==1
+    if plotmean==1 && plotmedian==1
         L=legend([p(1) p(2)],'Mean','Median');
-    elseif plotmean==0 & plotmedian==1
-        L=legend([p(2)],'Median');
-    elseif plotmean==1 & plotmedian==0
-        L=legend([p(1)],'Mean');
+    elseif plotmean==0 && plotmedian==1
+        L=legend(p(2),'Median');
+    elseif plotmean==1 && plotmedian==0
+        L=legend(p(1),'Mean');
     end
     
-    set(L,'box','off','FontSize',14)
+    set(L,'box','off','FontSize',18, 'Interpreter', 'latex') %, 'TextColor', medc
 else
     L=[];
 end

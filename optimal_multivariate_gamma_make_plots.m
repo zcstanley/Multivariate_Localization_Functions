@@ -1,5 +1,10 @@
+%% Makes plots of RMSE vs. different values of gamma for Askey and Wendland
+% Load output produced from script optimal_multivariate_gamma_save_output
+%
+% Author: Zofia Stanley
+
 %% Load output produced from script optimal_multivariate_gamma_save_output
-load('optimal_multivariate_gamma.mat') 
+load('Data/optimal_multivariate_gamma.mat') 
 
 %% Plot: Observe Y
 
@@ -234,7 +239,4 @@ set(gcf, 'Position',  [100, 100, 1200, 800])
 
 saveas(gcf, 'Plots/optimal_gamma_wendland_BothXY.png')
 
-loc_params = struct('rYY', 15, 'rXX', 40, 'rXY', 15, 'gammaYY', 2, 'gammaXX', 0); 
-gammaXY = askey_wendland_gamma_cross(loc_params); 
-fprintf('gammaXY is %g\n',gammaXY)
 

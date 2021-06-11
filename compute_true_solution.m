@@ -1,5 +1,5 @@
 function [XT, T, X, XM] = compute_true_solution(params, N, Ne, Nt, dtObs)
-% This function computes the true solution from bivariate Lorenz 96
+% Computes the true solution from bivariate Lorenz 96
 % for use in data assimilation scheme
 %
 % INPUTS:
@@ -14,6 +14,8 @@ function [XT, T, X, XM] = compute_true_solution(params, N, Ne, Nt, dtObs)
 % T is the time
 % X is an intialized ensemble
 % XM is initialized to store ensemble mean
+%
+% Authors: Ian Grooms and Zofia Stanley
 
 % Compute true solution
 [T,XT] = ode45(@(t,y) RHS_L96(t,y,params),[0 linspace(10,10+Nt*dtObs,Nt)],randn(N,1));

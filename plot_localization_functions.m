@@ -1,3 +1,7 @@
+%% Produces Figure 1 from Stanley et al. (2021)
+%
+% Author: Zofia Stanley
+
 %% Define common parameters
 dis = -50:50;   % distance matrix
 rYY = 15;       % localization radius for Y
@@ -43,10 +47,13 @@ locXX_W = wendland_univariate(dis, rXX, nu, gammaXX, k);
 locXY_W = bXY * wendland_univariate(dis, rXY, nu, gammaXY, k);
 
 %% Define colors
-color_gc = [179, 86, 89]./256;
-color_bw = [28, 63, 115]./256;
-color_a = [16, 36, 66]./256;
-color_w = [4, 9, 16]./256;
+oxford_blue = [12, 27, 49, 0.85*256]./256;
+maximum_green = [77, 139, 49, 0.9*256]./256;
+rich_black = [8, 18, 33]./256;
+color_gc = maximum_green;
+color_bw = oxford_blue; 
+color_a = oxford_blue;
+color_w = oxford_blue;
 
 %% Plot
 % Plot YY functions together
@@ -57,12 +64,15 @@ plot(dis, locYY_BW,'--', 'Color', color_bw, 'LineWidth', 5)
 plot(dis, locYY_A, ':', 'Color', color_a, 'LineWidth', 5) 
 plot(dis, locYY_W,'-.', 'Color', color_w, 'LineWidth', 5)
 hold off
-legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland')
-title('$\mathcal{L}_{YY}$', 'Interpreter', 'latex')
-xlabel('Distance')
+%L=legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland');
+%set(L, 'Interpreter', 'latex', 'box', 'off', 'TextColor', rich_black)
+xlabel('Distance', 'Interpreter', 'latex', 'Color', rich_black)
 ylim([0,1])
 xlim([-49, 49])
-set(gca, 'FontSize', 20, 'LineWidth', 2)
+set(gca, 'FontSize', 24, 'LineWidth', 2)
+set(gca,'TickLabelInterpreter','latex', 'Xcolor', rich_black,...
+         'Ycolor', rich_black, 'box', 'off');
+title('$\mathcal{L}_{YY}$', 'Interpreter', 'latex', 'Color', rich_black, 'Position', [-36 0.93 0], 'FontSize', 36)
 saveas(gcf, 'Plots/Fun_YY.png')
 
 % Plot XX functions together
@@ -73,12 +83,15 @@ plot(dis, locXX_BW,'--', 'Color', color_bw, 'LineWidth', 5)
 plot(dis, locXX_A, ':', 'Color', color_a, 'LineWidth', 5) 
 plot(dis, locXX_W,'-.', 'Color', color_w, 'LineWidth', 5)
 hold off
-legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland')
-title('$\mathcal{L}_{XX}$', 'Interpreter', 'latex')
-xlabel('Distance')
-set(gca, 'FontSize', 20, 'LineWidth', 2)
+%L=legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland');
+%set(L, 'Interpreter', 'latex', 'box', 'off', 'TextColor', rich_black)
+xlabel('Distance', 'Interpreter', 'latex', 'Color', rich_black)
+set(gca, 'FontSize', 24, 'LineWidth', 2)
+set(gca,'TickLabelInterpreter','latex', 'Xcolor', rich_black,...
+         'Ycolor', rich_black, 'box', 'off');
 ylim([0,1])
 xlim([-49, 49])
+title('$\mathcal{L}_{XX}$', 'Interpreter', 'latex', 'Color', rich_black, 'Position', [-36 0.93 0], 'FontSize', 36)
 saveas(gcf, 'Plots/Fun_XX.png')
 
 % Plot XY functions together
@@ -89,12 +102,16 @@ plot(dis, locXY_BW,'--', 'Color', color_bw, 'LineWidth', 5)
 plot(dis, locXY_A, ':', 'Color', color_a, 'LineWidth', 5) 
 plot(dis, locXY_W,'-.', 'Color', color_w, 'LineWidth', 5)
 hold off
-legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland')
-title('$\mathcal{L}_{XY}$', 'Interpreter', 'latex')
-xlabel('Distance')
-set(gca, 'FontSize', 20, 'LineWidth', 2)
+L=legend('Gaspari-Cohn', 'Bolin-Wallin', 'Askey', 'Wendland');
+set(L, 'Interpreter', 'latex', 'box', 'off', 'TextColor', rich_black)
+L.ItemTokenSize = [59,18];
+xlabel('Distance', 'Interpreter', 'latex', 'Color', rich_black)
+set(gca, 'FontSize', 24, 'LineWidth', 2)
+set(gca,'TickLabelInterpreter','latex', 'Xcolor', rich_black,...
+         'Ycolor', rich_black, 'box', 'off');
 ylim([0,1])
 xlim([-49, 49])
+title('$\mathcal{L}_{XY}$', 'Interpreter', 'latex', 'Color', rich_black, 'Position', [-36 0.93 0], 'FontSize', 36)
 saveas(gcf, 'Plots/Fun_XY.png')
 
 

@@ -1,6 +1,5 @@
 function gammaXY = askey_wendland_gamma_cross(params)
-% This function calculates cross-localization gamma for both Askey and
-% Wendland
+% Calculates cross-localization gamma for both Askey and Wendland
 %
 % INPUTS:
 % params is a struct which holds scalar localization parameters:
@@ -13,6 +12,8 @@ function gammaXY = askey_wendland_gamma_cross(params)
 %
 % OUTPUT:
 % gammaXY = shape parameter for cross-localization
+%
+% Author: Zofia Stanley
 
 % Load parameters
 rXX = params.rXX;

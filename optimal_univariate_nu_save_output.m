@@ -1,3 +1,7 @@
+%% Saves output from EnKF with different values of nu for Askey and Wendland
+%
+% Author: Zofia Stanley
+
 %% Set fixed parameters
 params = struct('K',36,'J',10,'F',10,'a',10,'b',10,'h',2);  %L96 params
 Nt = 3000;              % Number of assimilation cycles
@@ -41,7 +45,7 @@ for ii = 1:length(askey_nu)
     RMSE_Y_YnoX_UVA(ii) = mean(reshape(RMSE_Y(:, start:end), 1, []));
     RMSE_X_YnoX_UVA(ii) = mean(reshape(RMSE_X(:, start:end), 1, []));
 end
-save('optimal_univariate_nu.mat', 'RMSE_Y_YnoX_UVA', 'RMSE_X_YnoX_UVA')
+save('optimal_univariate_nu.mat', 'askey_nu', 'RMSE_Y_YnoX_UVA', 'RMSE_X_YnoX_UVA')
 
 % 1B. Wendland
 fprintf('\nWendland\n')
@@ -56,7 +60,7 @@ for ii = 1:length(wendland_nu)
     RMSE_Y_YnoX_UVW(ii) = mean(reshape(RMSE_Y(:, start:end), 1, []));
     RMSE_X_YnoX_UVW(ii) = mean(reshape(RMSE_X(:, start:end), 1, []));
 end
-save('optimal_univariate_nu.mat', 'RMSE_Y_YnoX_UVW', 'RMSE_X_YnoX_UVW', '-append')
+save('optimal_univariate_nu.mat', 'wendland_nu', 'RMSE_Y_YnoX_UVW', 'RMSE_X_YnoX_UVW', '-append')
 
 % 2. All X, No Y
 fprintf('\nAll X, No Y.\n')

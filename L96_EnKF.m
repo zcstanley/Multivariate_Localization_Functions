@@ -1,25 +1,31 @@
-function [rmsY, rmsX, fcast_err] = L96_EnKF(params, Nt, dtObs, sigma2Y, sigma2X, Frac_Obs_Y, Frac_Obs_X, Ne, x_position, rInf, Adapt_Inf, loc_fun_name, loc_params, True_Fcast_Err)
+function [rmsY, rmsX, fcast_err] = L96_EnKF(params, Nt, dtObs,... 
+                                    sigma2Y, sigma2X, Frac_Obs_Y, Frac_Obs_X,... 
+                                    Ne, x_position, rInf, Adapt_Inf,...
+                                    loc_fun_name, loc_params, True_Fcast_Err)
 % Implements EnKF for bivariate L96
 %
 % INPUTS:
 % params = L96 params
 % Nt = Number of assimilation cycles
 % dtObs = Time between assimilation cycles
-% sigma2X = X obs error variance
 % sigma2Y = Y obs error variance
-% NoX = Number of X obs
-% NoY = Number of Y obs
+% sigma2X = X obs error variance
+% Frac_Obs_Y = fraction of Y process that is observed
+% Frac_Obs_X = fraction of X process that is observed
 % Ne = Ensemble size
 % x_position =  Where is X_k located? (middle or first)
 % rInf = Inflation factor 
-% Adapt_Inf = Use adaptive inflation or constant inflation?
+% Adapt_Inf = Use adaptive inflation or constant inflation? (boolean)
 % loc_fun_name = Localization function name
 % loc_params = Localization parameters
+% True_Fcast_Err = save true forecast error correlations? (boolean)
 %
 % OUTPUTS:
 % rmsY = root mean square error for process Y
 % rmsX = root mean square error for process X
-
+% fcast_err = true forecast error correlations
+%
+% Authors: Ian Grooms and Zofia Stanley
 
 %% Initial set up
 [Ny, Nx, N, NoY, NoX, No] = derived_parameters(params, Frac_Obs_Y, Frac_Obs_X);
@@ -35,6 +41,7 @@ rmsX = NaN(1, Nt);
 if True_Fcast_Err 
     fcast_err = zeros(N, N, Nt);
 end
+
 %% Run EnKF
 for ii=1:Nt
     

@@ -1,6 +1,6 @@
 function loc = askey(dis, params)
 % This function forms a localization matrix using
-% Askey localization; Roh et al. (9)
+% Askey localization; Eq. (9), Stanley et al. (2021)
 %
 % INPUTS:
 % dis = distance
@@ -18,6 +18,8 @@ function loc = askey(dis, params)
 %
 % OUTPUT:
 % loc = localization matrix
+%
+% Author: Zofia Stanley
 
 % Load parameters
 rXX = params.rXX;

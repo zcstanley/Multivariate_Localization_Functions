@@ -1,4 +1,7 @@
-%% Plot one snapshot of bivariate Lorenz 96 process
+%% Produces the right panel of Figure 2 from Stanley et al. (2021)
+% Plot one snapshot of bivariate Lorenz 96 process
+%
+% Author: Zofia Stanley
 
 %% Set up parameters
 params = struct('K',36,'J',10,'F',10,'a',10,'b',10,'h',2);
@@ -23,16 +26,21 @@ sz = XT(:, 1113);
 
 % Define colors
 ycolor = [16, 36, 66]./256;
-xcolor = [42, 120, 122]./256;
+xcolor = [145, 47, 64]./256;
 
+% Plot
 plot3(sx([Ny+1:N,Ny+1]), sy([Ny+1:N, Ny+1]), sz([Ny+1:N, Ny+1]), '--.',... 
-      'Color', xcolor, 'LineWidth', 3, 'MarkerSize', 18)
+      'Color', xcolor, 'LineWidth', 6, 'MarkerSize', 36)
 hold on
-plot3(sx([1:Ny, 1]), sy([1:Ny,1]), sz([1:Ny,1]), '-', 'Color', ycolor, 'LineWidth', 3)
-zlabel('$X_k, Y_{j,k}$', 'Interpreter', 'latex')
-xlim([-60, 60])
-ylim([-60, 60])
-legend({'$X$', '$Y$'}, 'Interpreter', 'latex')
-set(gca, 'FontSize', 18)
+plot3(sx([1:Ny, 1]), sy([1:Ny,1]), sz([1:Ny,1]), '-', 'Color', ycolor, 'LineWidth', 6)
+zlabel('$X_k, Y_{j,k}$', 'Interpreter', 'latex', 'Color', ycolor)
+xlim([-58, 58])
+ylim([-58, 58])
+zlim([-2, 6.5])
+L=legend({'$X$', '$Y$'}, 'Interpreter', 'latex', 'box', 'off', 'Location', 'best', 'TextColor', ycolor);
+L.ItemTokenSize = [75,18];
+set(gca, 'FontSize', 40, 'LineWidth', 2)
+set(gca,'TickLabelInterpreter','latex', 'Xcolor', ycolor,...
+         'Ycolor', ycolor, 'box', 'off');
 hold off
 saveas(gcf, 'Plots/L96_circle_snapshot.png')

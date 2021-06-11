@@ -1,5 +1,6 @@
 function loc = bolin_wallin_cross(dis, cY, cX)
-% Bolin & Wallin cross-localization
+% Calculates Bolin & Wallin cross-localization weights as in
+% Eq. (7) in Stanley et al., (2021)
 %
 % INPUTS:
 % dis = distance (matrix)
@@ -8,6 +9,8 @@ function loc = bolin_wallin_cross(dis, cY, cX)
 %
 % OUTPUT:
 % loc = localization matrix
+%
+% Author: Zofia Stanley
 
 dis = abs(dis);
 
@@ -21,7 +24,7 @@ cmax = max(cY, cX);
 % x of a sphere with radius r
 calculate_volume_spherical_cap = @(x, c) (pi/3) .* (c - x).^2 .* (2*c + x);
 
-% This function calculates the volume of the lens.
+% This function calculates the volume of a lens.
 calculate_volume_lens = @(d, cmax, cmin) calculate_volume_spherical_cap((d.^2 + cmax^2 - cmin^2)./(2.*d), cmax) + ...
                                          calculate_volume_spherical_cap((d.^2 + cmin^2 - cmax^2)./(2.*d), cmin); 
 
@@ -32,11 +35,11 @@ vol = zeros(size(dis)) ;
 one_sphere = dis <= (cmax - cmin) ;
 one_lens = ( dis > (cmax - cmin) ) & ( dis < (cmax + cmin) ) ;
 
-% if one circle is fully contained in the other the area of intersection is
-% the area of the smaller circle. 
+% If one sphere is fully contained in the other the volume of intersection is
+% the volume of the smaller circle. 
 vol(one_sphere) = (4/3) * pi * cmin^ 3 ;
     
-% if neither circle is fully in the other and the area of intersection is
+% If neither sphere is fully in the other and the volume of intersection is
 % nonzero, the volume of intersection is the volume of a lens
 vol(one_lens) = calculate_volume_lens(dis(one_lens), cmax, cmin) ;
 

@@ -1,8 +1,9 @@
 function loc = bolin_wallin_univariate(dis, c)
-% Bolin-Wallin univariate localization
+% Calculates Bolin-Wallin univariate localization weights
 % This is equivalent to the normalized volume of intersection of two
 % spheres of radius c separated by distance dist.
 % Sometimes also called spherical covariance function.
+% Eq. (6) in Stanley et al., (2021)
 %
 % INPUTS:
 % dis = distance (matrix)
@@ -10,6 +11,8 @@ function loc = bolin_wallin_univariate(dis, c)
 %
 % OUTPUT:
 % loc = localization matrix
+%
+% Author: Zofia Stanley
 
 % Calculate normalized volume of intersection
 dis = abs(dis) ; 

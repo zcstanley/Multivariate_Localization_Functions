@@ -1,5 +1,5 @@
 function [H, R, Y, YN] = set_up_observations(Ny, Nx, NoY, NoX, Nt, Ne, sigma2Y, sigma2X, XT)
-% This function sets up observations for EnKF
+% Sets up observations for EnKF
 %
 % INPUTS:
 % Ny is the number of Y state variables
@@ -15,14 +15,16 @@ function [H, R, Y, YN] = set_up_observations(Ny, Nx, NoY, NoX, Nt, Ne, sigma2Y, 
 % H = observation operator
 % R = observation error covariance matrix
 % Y = observations
+%
+% Author: Zofia Stanley
 
-% randomly pick observation locations
-indY = sort(randsample(1:Ny,NoY,false));    % Indices of Y observations
+% Randomly pick observation locations
+indY = sort(randsample(1:Ny,NoY,false));        % Indices of Y observations
 indX = sort(randsample(Ny+1:Ny+Nx,NoX,false));  % Indices of X observations
 
-% set up obs operator and obs error covariance matrix
+% Set up obs operator and obs error covariance matrix
 I = eye(Ny+Nx);
-H = I([indY , indX] , :);                   % observation operator
+H = I([indY , indX] , :);                       % observation operator
 R = blkdiag(sigma2Y*eye(NoY),sigma2X*eye(NoX)); % iid obs
 
 % Generate observations

@@ -5,8 +5,7 @@ function loc = bolin_wallin(dis, params)
 % radius cmin. The normalization is chosen so that the normalized volume of 
 % two colocated spheres (d=0) with the same radius (cmax=cmin) is 1. 
 % This localization function is defined in Bolin and Wallin (2016), Section 2.1
-% Note that there is a typo in Bolin and Wallin, which is corrected here.
-% B & W write pi * r^3/2 when they mean pi * r^3.
+% and rewritten in Eqs. (6-8) in Stanley et al., (2021)
 %
 % INPUTS:
 % dis = distance
@@ -19,6 +18,8 @@ function loc = bolin_wallin(dis, params)
 %
 % OUTPUT:
 % loc = localization matrix
+%
+% Author: Zofia Stanley
 
 % Load parameters
 rXX = params.rXX;
@@ -41,7 +42,7 @@ dYY = dis(1:Ny, 1:Ny);
 dXX = dis(Ny+1:end, Ny+1:end);
 dXY = dis(Ny+1:end, 1:Ny);
 
-% within_component localization
+% Within-component localization
 locYY = bolin_wallin_univariate(dYY, cY);
 locXX = bolin_wallin_univariate(dXX, cX);
 

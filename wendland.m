@@ -1,6 +1,6 @@
 function loc = wendland(dist, params)
 % This function forms a localization matrix using
-% Wendland localization; Roh et al. (9)
+% Wendland localization; Eq. (11) in Stanley et al. (2021)
 %
 % INPUTS:
 % dist = distance
@@ -19,6 +19,8 @@ function loc = wendland(dist, params)
 %
 % OUTPUT:
 % loc = localization matrix
+%
+% Author: Zofia Stanley
 
 % Load parameters
 rXX = params.rXX;

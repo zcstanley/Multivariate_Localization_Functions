@@ -1,7 +1,10 @@
+%% Produces plot of RMSE vs. univariate nu for Askey and Wendland
+% Load output produced from script optimal_univariate_nu_save_output
+%
+% Author: Zofia Stanley
+
 %% Load output produced from script optimal_univariate_nu_save_output
-load('optimal_univariate_nu.mat')
-askey_nu = [1, 1.5, 2, 2.5];    % nu for univariate Askey
-wendland_nu = askey_nu+1;       % nu for univariate Wendland
+load('Data/optimal_univariate_nu.mat')
 
 % 1. All Y, No X
 figure

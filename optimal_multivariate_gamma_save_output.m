@@ -1,3 +1,7 @@
+%% Saves output from EnKF with different multivariate gamma for Askey and Wendland
+%
+% Author: Zofia Stanley
+
 %% Set fixed parameters
 params = struct('K',36,'J',10,'F',10,'a',10,'b',10,'h',2);  %L96 params
 Nt = 3000;              % Number of assimilation cycles
@@ -17,7 +21,7 @@ gamma_xx_w = [0,1,2,3,4,5,6,7,8,9];     % values of gamm_xx for Wendland
 start = 1001;           % first assimilation cycle considered in RMSE computations
 
 %% Run Experiments
-%{
+
 % 1. All Y, No X
 fprintf('All Y, No X.\n')
 dtObs = 0.005;         % Time between assimilation cycles
@@ -124,7 +128,7 @@ for ii = 1:length(gamma_yy)
     end
 end
 save('optimal_multivariate_gamma.mat', 'RMSE_Y_XnoY_MVW', 'RMSE_X_XnoY_MVW', '-append')
-%}
+
 
 % 3. Both X and Y
 fprintf('\nBoth X and Y.\n')

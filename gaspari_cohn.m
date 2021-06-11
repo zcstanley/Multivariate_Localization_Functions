@@ -1,6 +1,6 @@
 function loc = gaspari_cohn(dis, params)
 % This function forms a localization matrix using the multivariate
-% Gaspari-Cohn formulation from Stanley, Grooms, and Kleiber (2021)
+% Gaspari-Cohn formulation from Stanley, Grooms, and Kleiber, (2021)
 %
 % INPUTS:
 % dis = distance
@@ -13,6 +13,8 @@ function loc = gaspari_cohn(dis, params)
 %
 % OUTPUT:
 % loc = localization matrix
+%
+% Author: Zofia Stanley
 
 % Load parameters
 rXX = params.rXX;

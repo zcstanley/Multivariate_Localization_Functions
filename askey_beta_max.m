@@ -1,6 +1,7 @@
 function beta_max = askey_beta_max(params)
 % This function calculates maximum cross-localization weight factor
 % for Askey with given localization parameters
+% Eq. (13) with k=0 in Stanley et al., (2021) 
 %
 % INPUTS:
 % params is a struct which holds scalar localization parameters:
@@ -14,6 +15,8 @@ function beta_max = askey_beta_max(params)
 %
 % OUTPUT:
 % beta_max = maximum cross-localization weight factor
+%
+% Author: Zofia Stanley
 
 % Load parameters
 rXX = params.rXX;

@@ -4,9 +4,22 @@ function [rInf, rSig] = adaptive_inflation(H, X, Y, N, No, Ne, obs_var_vec, loc,
 % https://doi.org/10.1175/MWR-D-17-0187.1, 2018
 %
 % INPUTS:
+% H = observation operator (matrix)
+% X = state
+% Y = observations
+% N = number of state variables
+% No = number of observations
+% Ne = ensemble size
+% obs_var_vec = vector of observation error variances
+% loc = localization matrix
+% rInf = vector of inflation factors
+% rSig = vector of inflation standard deviations
 %
 % OUTPUTS:
+% rInf = vector of new inflation factors
+% rSig = vector of new inflation standard deviations
 %
+% Author: Zofia Stanley, with input from DART website
 
 % Hard-coded constraints, could easily pass these as parameters and allow
 % for more flexibility, but hard-coded is fine for this example.
@@ -40,7 +53,7 @@ for kk=1:No % loop over observations
             inflate = inf_upper_bound ;
         end
         
-        %Make sure sd satisfies constraints
+        % Make sure sd satisfies constraints
         inflate_sd = new_inflate_sd ;
         if(inflate_sd < sd_lower_bound) 
             inflate_sd = sd_lower_bound;

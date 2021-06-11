@@ -8,6 +8,8 @@ function OUT = RHS_L96(~,IN,p)
 %   OUT RHS computed as follows
 %   dX/dt =-X_{k-1}*(X_{k-2}-X_{k+1}) - X_k - (h*a/b)*sum_{j=1}^J Y_{j,k} + F
 %   dY/dt =a*(-b*Y_{j+1,k}*(Y_{j+2,k}-Y_{j-1,k}) - Y_{j,k} +(h/b)*X_k)
+%
+% Author: Ian Grooms
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%

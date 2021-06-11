@@ -1,7 +1,20 @@
 function new_inflate = ai_linear_bayes(dist_2, prior_var, obs_var, inflate, gamma_corr, Ne, rate)
-% This function computes the linear approximation to the minima of the 
+% Computes the linear approximation to the minima of the 
 % likelihood function for adaptive inflation. 
-% Code heavily modeled on DART code, which can be found here:
+%
+% INPUTS: 
+% dist_2 = distance ^ 2 between obs and prior mean
+% prior_var = prior variance
+% obs_var = observation error variance
+% inflate = current inflation factor
+% gamma_corr = localized prior sample correlation between the observation and state
+% Ne = ensemble size
+% rate = rate parameter for IG distribution
+%
+% OUTPUT:
+% new_inflate = updated inflation factor
+%
+% Coded in FORTRAN by DART, Moved to Matlab by Zofia Stanley
 % https://github.com/NCAR/DART/blob/main/assimilation_code/modules/assimilation/adaptive_inflate_mod.f90
 
 % Scaling factors
@@ -26,7 +39,8 @@ if(like_bar <= 0)
 end
 
 % Next compute derivative of likelihood at this point
-deriv_theta = 0.5 * prior_var * gamma_corr * ( 1 - gamma_corr + gamma_corr * sqrt(inflate) ) / ( theta_bar * sqrt(inflate) ) ;
+deriv_theta = 0.5 * prior_var * gamma_corr * ( 1 - gamma_corr + gamma_corr * sqrt(inflate) ) /...
+                                             ( theta_bar * sqrt(inflate) ) ;
 like_prime  = like_bar * deriv_theta * (dist_2 / theta_bar_2 - 1) / theta_bar ;
 
 % If like_prime goes to 0, can't do anything, so just keep current values

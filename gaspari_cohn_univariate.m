@@ -1,5 +1,6 @@
 function loc = gaspari_cohn_univariate(dist, c)
-% Gaspari-Cohn localization; Roh et al. (16)
+% Calculates the standard Gaspari-Cohn localization weights
+% Eq. (4.10) in Gaspari & Cohn, Corr. Fun. in 2 and 3 Dim., (1999)
 %
 % INPUTS:
 % dist = distance (matrix)
@@ -7,6 +8,8 @@ function loc = gaspari_cohn_univariate(dist, c)
 % 
 % OUTPUT:
 % loc = localization matrix
+%
+% Author: Zofia Stanley
 
 % Rescale distance matrix
 x = abs(dist)./c;

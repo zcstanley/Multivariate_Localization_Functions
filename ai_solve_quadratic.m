@@ -1,6 +1,13 @@
 function [root1, root2] = ai_solve_quadratic(a, b, c)
 % Scaled quadratic solver to avoid precision issues.
-% Code heavily modeled on DART code, which can be found here:
+%
+% INPUTS:
+% a, b, c = coefficients of quadratic polynomial, ax^2 + bx + c
+%
+% OUTPUTS:
+% root1, root2 = two roots of quadratic polynomial
+%
+% Coded in FORTRAN by DART, Moved to Matlab by Zofia Stanley
 % https://github.com/NCAR/DART/blob/main/assimilation_code/modules/assimilation/adaptive_inflate_mod.f90
 
 % Scale the coefficients to get better round-off tolerance

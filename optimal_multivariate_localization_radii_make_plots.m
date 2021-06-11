@@ -1,21 +1,22 @@
+%% Makes plots of RMSE vs. different multivariate localization radii
+% Load output produced from script optimal_multivariate_localization_radii_save_output
+%
+% Author: Zofia Stanley
+
 %% Load output produced from script optimal_multivariate_localization_radii_save_output
-load('optimal_multivariate_localization_radii.mat')
+load('Data/optimal_multivariate_localization_radii.mat')
 
 %% 1. Plot All Y, No X
 
-% These should have been NaNs
-RMSE_Y_YnoX_MVW([5,6]) = NaN;
-RMSE_X_YnoX_MVW([5,6]) = NaN;
-
-RMSE_X_YnoX_MVMean = median([RMSE_X_YnoX_MVGC; RMSE_X_YnoX_MVBW; RMSE_X_YnoX_MVA; RMSE_X_YnoX_MVW]); 
-RMSE_Y_YnoX_MVMean = median([RMSE_Y_YnoX_MVGC; RMSE_Y_YnoX_MVBW; RMSE_Y_YnoX_MVA; RMSE_Y_YnoX_MVW]); 
+RMSE_X_YnoX_MVMedian = median([RMSE_X_YnoX_MVGC; RMSE_X_YnoX_MVBW; RMSE_X_YnoX_MVA; RMSE_X_YnoX_MVW]); 
+RMSE_Y_YnoX_MVMedian = median([RMSE_Y_YnoX_MVGC; RMSE_Y_YnoX_MVBW; RMSE_Y_YnoX_MVA; RMSE_Y_YnoX_MVW]); 
 
 figure
 subplot(2,1,1)
 plot( loc_rad, RMSE_X_YnoX_MVGC, '-o', loc_rad, RMSE_X_YnoX_MVBW, '-o', ...
       loc_rad, RMSE_X_YnoX_MVA, '-o', loc_rad, RMSE_X_YnoX_MVW, '-o', 'LineWidth', 3)
 hold on
-plot(loc_rad, RMSE_X_YnoX_MVMean, 'k--', 'LineWidth', 3)
+plot(loc_rad, RMSE_X_YnoX_MVMedian, 'k--', 'LineWidth', 3)
 hold off
 ylabel('RMSE X')
 xlabel('Localization radius')
@@ -27,7 +28,7 @@ subplot(2,1,2)
 plot( loc_rad, RMSE_Y_YnoX_MVGC, '-o', loc_rad, RMSE_Y_YnoX_MVBW, '-o', ...
       loc_rad, RMSE_Y_YnoX_MVA,'-o', loc_rad, RMSE_Y_YnoX_MVW, '-o', 'LineWidth', 3)
 hold on
-plot(loc_rad, RMSE_Y_YnoX_MVMean, 'k--', 'LineWidth', 3)
+plot(loc_rad, RMSE_Y_YnoX_MVMedian, 'k--', 'LineWidth', 3)
 hold off
 ylabel('RMSE Y')
 xlabel('Localization radius')

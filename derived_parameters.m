@@ -1,5 +1,5 @@
 function [Ny, Nx, N, NoY, NoX, No] = derived_parameters(params, Frac_Obs_Y, Frac_Obs_X)
-% This function derives dependent parameters from independent ones
+% Derives dependent parameters from independent ones for EnKF
 %
 % INPUTS: 
 % params is a struct containing parameters for the bivariate Lorenz 96 model
@@ -9,10 +9,12 @@ function [Ny, Nx, N, NoY, NoX, No] = derived_parameters(params, Frac_Obs_Y, Frac
 % OUTPUTS:
 % Ny is the number of state variables in the Y process
 % Nx is the number of state variables in the X process
-% N is the total number of dependent variables
+% N is the total number of state variables
 % NoY is the number of observarions of Y
 % NoX is the number of observations of X
 % No is the number of obs per cycle
+%
+% Author: Zofia Stanley
 
 % Number of state variables
 Nx = params.K ;

@@ -1,13 +1,16 @@
 function loc = gaspari_cohn_cross(dist, cY, cX)
-% Gaspari-Cohn cross-localization; Stanley, Grooms, Kleiber (2021) 
+% Calculates the Gaspari-Cohn cross-localization weights from 
+% Eqs. (A1) and (A2) in Stanley, Grooms, Kleiber, Multivar. Loc. Fun. (2021) 
 %
 % INPUTS:
 % dist = distance (matrix)
-% cY = localization radius for process Y / 2 = kernel radius (scalar)
-% cX = localization radius for process X / 2 = kernel radius (scalar)
+% cY = kernel radius = localization radius for process Y / 2 (scalar)
+% cX = kernel radius = localization radius for process X / 2 (scalar)
 %
 % OUTPUT:
 % loc = localization matrix
+%
+% Author: Zofia Stanley
 
 % Order kernel radii
 cmin = min(cY, cX);

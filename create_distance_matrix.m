@@ -1,5 +1,5 @@
 function dis = create_distance_matrix(spatial_locations, Ny)
-% This function forms a distance matrix for a periodic domain
+% Forms a distance matrix for a periodic domain
 %
 % INPUTS:
 % spatial_locations is an array 
@@ -7,6 +7,8 @@ function dis = create_distance_matrix(spatial_locations, Ny)
 %
 % OUTPUT:
 % dis = distance matrix
+%
+% Author: Zofia Stanley
 
 % check lengths
 N = length(spatial_locations); 
